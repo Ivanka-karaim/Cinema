@@ -1,0 +1,262 @@
+header{
+  left:0;
+  top:0;
+  background-color: #3D2645;
+  width:100%;
+  height: 80px;
+  position: fixed;
+
+
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+.header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+
+}
+.logo {
+  font-family: 'Rubik Wet Paint', cursive;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 71px;
+  letter-spacing: 0.05em;
+
+  color: #F0EFF4;
+}
+.text_login {
+  font-family: 'Inter', cursive;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 48px;
+  letter-spacing: 0.02em;
+  padding-right: 30px;
+
+  color: #F0EFF4;
+}
+.login {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration-line: none;
+}
+.login:hover{
+  text-decoration-line: underline;
+  text-decoration-color: #F0EFF4;
+  margin-top: -2px;
+}
+
+i{
+  font-size: 30px;
+
+}
+.icon {
+  color: #F0EFF4;
+}
+main{
+  background-color: #121212;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-top: 80px;
+
+}
+.photo{
+  height:450px;
+  width:100%;
+}
+.session{
+  box-sizing: border-box;
+  border: 1px solid #DA4167;
+}
+.text_session{
+  font-family: 'Inter', cursive;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 36px;
+  padding-top: 20px;
+
+
+  color: #832161;
+}
+.text_session_block{
+  padding-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.underline {
+  text-decoration-line: underline;
+}
+.a_session{
+  text-decoration-line: none;
+
+}
+.session:hover{
+  margin-top: -5px;
+}
+.login_store{
+  /*height: 550px;*/
+  background: #3D2645;
+  border-radius: 146px;
+  width:50%;
+  margin-left: 25%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 77px 55px 77px 55px;
+
+}
+.enter{
+  font-family: 'Inter', cursive;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 77px;
+  text-align: center;
+  letter-spacing: 0.02em;
+
+  color: #F0EFF4;
+}
+hr{
+  width:70%;
+  color: #F0EFF4;
+}
+.input {
+
+  font-family: 'Inter', cursive;
+  font-size: 15px;
+  color: #555555;
+  line-height: 1.2;
+
+  display: block;
+  width: 100%;
+  height: 45px;
+  background: transparent;
+  padding: 0 20px;
+  border: none;
+}
+.input_block {
+  width: 70%;
+  position: relative;
+  border-bottom: 2px solid #adadad;
+  margin-bottom: 40px;
+  margin-top:15px;
+}
+.button_enter{
+  width:60%;
+  height: 80px;
+  background: #70587C;
+  border-radius: 77.5px;
+  font-family: 'Inter',cursive;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 58px;
+  /* identical to box height */
+
+  text-align: center;
+  letter-spacing: 0.02em;
+
+  color: #F0EFF4;
+  border: none;
+  cursor: pointer;
+}
+.registr{
+  font-family: 'Inter', cursive;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 39px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-decoration-line: underline;
+  color: #F0EFF4;
+}
+.name_film {
+  font-family: 'Inter', cursive;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 58px;
+
+  letter-spacing: 0.02em;
+
+  color: #FFFFFF;
+}
+.text_film {
+  font-family: 'Inter', cursive;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 39px;
+  letter-spacing: 0.02em;
+
+  color: #FFFFFF;
+}
+.text_price {
+  font-family: 'Inter', cursive;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 36px;
+
+  color: #832161;
+
+}
+.height100{
+  height: 100%;
+}
+.width100{
+  width:100%;
+}
+.places {
+  margin: 30px 200px;
+
+}
+.place_free{
+  margin-top: 20px;
+  background: #70587C;
+  border-radius: 15px;
+  height:45px;
+  width:100%;
+  cursor: pointer;
+  color: #70587C;
+  font-family: 'Inter', cursive;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 40px;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+.place_free:hover{
+  transition-duration: 2s;
+  background: #DA4167;
+  color:  white;
+
+}
+.place_notfree{
+  margin-top: 20px;
+  background: #959595;
+  border-radius: 15px;
+  height:45px;
+  width:100%;
+
+}
+.password_input {
+
+}
