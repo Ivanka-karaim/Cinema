@@ -64,15 +64,14 @@ public class LoginCommand extends Command {
             //for first enter
             ArrayList<User> users=new ArrayList<User>();
             users.add(user);
-//            List<Publication> publicationsForUser=new PublicationDao().findPublicationForAccount(user.getId());
 
-            // put user the request
             request.setAttribute("account", users);
             // put publication the request
 //            request.setAttribute("publication", publicationsForUser);
-            if (Objects.equals(role, "admin"))
+            if (Objects.equals(role, "admin")) {
+                System.out.println(1234);
                 forward = Path.PAGE__ACCOUNT_ADMIN;
-            else {
+            }else {
                 forward = Path.PAGE__ACCOUNT_USER;
             }
 

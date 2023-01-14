@@ -146,10 +146,11 @@
                 <a href='signIn.jsp' class="registr">
                     Зареєструватись
                 </a>
-
-
-
+                <a href="sessions" class="registr">
+                    Увійти як гість
+                </a>
             </form>
+
         </div>
     </div>
 </main>

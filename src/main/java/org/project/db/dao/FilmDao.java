@@ -16,6 +16,7 @@ public class FilmDao{
     private static final String FILM = "SELECT * FROM films WHERE id = ?";
     private static final String GENRES_FILM = "SELECT * FROM film_genre WHERE film_id = ?";
     private static final String ADD_GENRE_WITH_FILM = "INSERT INTO film_genre (film_id, genre_id) values (?,?) ";
+    private static final String FILMS = "SELECT * FROM films";
     public Film insertFilm(Film film) throws SQLException {
         Connection conn = null;
 
@@ -63,7 +64,7 @@ public class FilmDao{
         return film;
 
     }
-    public boolean deleteUsers(Film film)  {
+    public boolean deleteFilm(Film film)  {
         Connection conn = null;
 
         try {
@@ -115,7 +116,7 @@ public class FilmDao{
         }
         return null;
     }
-    public List<Genre> genresByFilm(int id){
+    public static List<Genre> genresByFilm(int id){
         List<Genre> genres = new ArrayList<>();
         try (Connection conn = DBManager.getInstance().getConnectionWithDriverManager();
         PreparedStatement stmt = conn.prepareStatement(GENRES_FILM) ){
@@ -133,5 +134,28 @@ public class FilmDao{
         }
         return genres;
 
+    }
+    public static List<Film> getAllFilms() {
+        List<Film> films = new ArrayList<>();
+        try (Connection conn = DBManager.getInstance().getConnectionWithDriverManager();
+             PreparedStatement stmt = conn.prepareStatement(FILMS); ResultSet rs = stmt.executeQuery();){
+            while(rs.next()){
+                Film film = new Film();
+                film.setId(rs.getInt("id"));
+                film.setName(rs.getString("name"));
+                film.setAuthor(rs.getString("author"));
+                film.setCountry(rs.getString("country"));
+                film.setYear(rs.getInt("year"));
+                film.setDescription(rs.getString("description"));
+                film.setPhoto(rs.getString("photo"));
+                film.setDuration(rs.getTime("timestamp"));
+                film.setGenres(genresByFilm(film.getId()));
+                films.add(film);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return films;
     }
 }

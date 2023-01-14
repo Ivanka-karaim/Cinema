@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SessionDao {
-    private static final String ALL_SESSION ="SELECT * FROM sessions WHERE timestamp > now() SORTED BY timestamp";
-    private static  final  String SESSION_PAGINATION = "SELECT * FROM sessions WHERE timestamp > now() SORTED BY timestamp LIMIT ?,?";
-    private static final String ADD_SESSION = "INSERT INTO sessions (timestamp, price, film_id) values (?, ?, ?);";
-
-    public List<Session> getAllSessions (){
+    private static final String ALL_SESSION ="SELECT * FROM session WHERE timestamp > now() ORDER BY timestamp ASC";
+    private static  final  String SESSION_PAGINATION = "SELECT * FROM session WHERE timestamp > now() ORDER BY timestamp ASC LIMIT ?,?";
+    private static final String ADD_SESSION = "INSERT INTO session (timestamp, price, film_id) values (?, ?, ?);";
+    private static final String DELETE_SESSION = "DELETE FROM session WHERE id=?";
+    public static List<Session> getAllSessions(){
         List<Session> sessions = new ArrayList<>();
         try (Connection conn = DBManager.getInstance().getConnectionWithDriverManager();
              PreparedStatement stmt = conn.prepareStatement(ALL_SESSION)) {
@@ -93,6 +93,23 @@ public class SessionDao {
         }
         return session;
 
+    }
+    public static boolean deleteSession(int id){
+        Connection conn = null;
+
+        try {
+            conn = DBManager.getInstance().getConnectionWithDriverManager();
+            PreparedStatement stmt = conn.prepareStatement(DELETE_SESSION) ;
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            DBManager.getInstance().rollbackAndClose(null);
+        }finally {
+            DBManager.getInstance().commitAndClose(conn);
+        }
+        return true;
     }
 
 

@@ -13,8 +13,12 @@ public class CommandSource {
     static {
         // common commands
         commands.put("login", new LoginCommand());
-//        commands.put("publication", new PublicationCommand());
+        commands.put("sessions", new SessionsCommand());
         commands.put("signIn", new SignInCommand());
+        commands.put("edit_sessions", new EditSessionsCommand());
+        commands.put("delete_session", new DeleteSessionCommand());
+        commands.put("add_session", new AddSessionCommand());
+        commands.put("add_session_form", new AddSessionFormCommand());
 //        commands.put("publicationView", new PublicationViewCommand());
 //        commands.put("search", new SearchCommand());
 //        commands.put("cart", new CartCommand());

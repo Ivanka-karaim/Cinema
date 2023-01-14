@@ -75,6 +75,7 @@ public class User extends Entity{
                 ", phone_number='" + phone_number + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

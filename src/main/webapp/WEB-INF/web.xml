@@ -24,6 +24,22 @@
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>sessions</servlet-name>
+    <servlet-class>org.project.websource.FrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>sessions</servlet-name>
+    <url-pattern>/sessions</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>edit_sessions</servlet-name>
+    <servlet-class>org.project.websource.FrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>edit_sessions</servlet-name>
+    <url-pattern>/edit_sessions</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>signIn</servlet-name>
     <servlet-class>org.project.websource.FrontController</servlet-class>
   </servlet>
