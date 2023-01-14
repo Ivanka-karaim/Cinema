@@ -48,7 +48,7 @@
 <%--                    <jsp:useBean id="session" scope="request" type="java.util.List"/>--%>
                     <c:forEach  items="${session}" var="session1">
 
-                    <a href="" class="a_session">
+                    <a href="sessions?command=session&id=${session1.id}" class="a_session">
                         <img class="photo" src="">
                         <div class="text_session_block">
                             <div class="text_session">

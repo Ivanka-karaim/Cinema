@@ -14,6 +14,7 @@
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="resources"/>
 <%@ page session="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="${sessionScope.lang}">
 <head>
     <meta charset="UTF-8">
@@ -33,17 +34,18 @@
         <div class="header">
 
             <div class="logo">CiNeMa</div>
-            <%if( session.getAttribute("userRole").equals("user")) { %>
+            <c:if test="${session.getAttribute('userRole').isPresent()}">
             <a onclick="location.href='account?command=account'"  class="login">
                 <div class="text_login">Профіль</div>
                 <div class="icon"><i class="fa-solid fa-user"></i></div>
             </a>
-            <% } else {%>
+            </c:if>
+
             <a href="" class="login">
                 <div class="text_login">Увійти</div>
                 <div class="icon"><i class="fa-solid fa-user"></i></div>
             </a>
-            <%  }%>
+
         </div>
     </div>
 </header>

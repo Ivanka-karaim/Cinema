@@ -15,6 +15,24 @@ public class SessionDao {
     private static  final  String SESSION_PAGINATION = "SELECT * FROM session WHERE timestamp > now() ORDER BY timestamp ASC LIMIT ?,?";
     private static final String ADD_SESSION = "INSERT INTO session (timestamp, price, film_id) values (?, ?, ?);";
     private static final String DELETE_SESSION = "DELETE FROM session WHERE id=?";
+    private static final String GET_SESSION_ID = "SELECT * FROM session WHERE id=?";
+    public static Session getSessionByID(int id){
+            try (Connection conn = DBManager.getInstance().getConnectionWithDriverManager();
+                 PreparedStatement stmt = conn.prepareStatement(GET_SESSION_ID)) {
+                stmt.setInt(1, id);
+                ResultSet rs = stmt.executeQuery();
+                rs.next();
+                Session session = new Session();
+                session.setTimestamp(rs.getTimestamp("timestamp"));
+                session.setId(rs.getInt("id"));
+                session.setPrice(rs.getDouble("price"));
+                session.setFilm(FilmDao.getFilmById(rs.getInt("film_id")));
+                return session;
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            return null;
+    }
     public static List<Session> getAllSessions(){
         List<Session> sessions = new ArrayList<>();
         try (Connection conn = DBManager.getInstance().getConnectionWithDriverManager();

@@ -8,7 +8,7 @@ public final class Path {
     public static final String PAGE__LIST_MENU = "jsp/sessions.jsp";
     public static final String PAGE__LIST_MENU_ADMIN = "jsp/admin/sessions.jsp";
     public static final String PAGE__LIST_ACCOUNTS = "jsp/admin/userTable.jsp";
-    public static final String PAGE__PUBLICATION_VIEW = "jsp/publicationView.jsp";
+    public static final String PAGE__SESSION = "jsp/session.jsp";
     public static final String PAGE__PUBLICATION_VIEW_GUEST = "jsp/guestPublicationView.jsp";
     public static final String PAGE__ADD_SESSION = "jsp/admin/add_session.jsp";
 

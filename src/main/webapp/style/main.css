@@ -234,6 +234,12 @@ hr{
   height:45px;
   width:100%;
   cursor: pointer;
+
+
+}
+.place_free a{
+  width:100%;
+  height:45px;
   color: #70587C;
   font-family: 'Inter', cursive;
   font-style: normal;
@@ -246,8 +252,13 @@ hr{
 .place_free:hover{
   transition-duration: 2s;
   background: #DA4167;
-  color:  white;
+  color:white;
 
+}
+.place_free a:hover{
+  transition-duration: 2s;
+
+  color:  white;
 }
 .place_notfree{
   margin-top: 20px;

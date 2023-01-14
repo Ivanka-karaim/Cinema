@@ -10,6 +10,10 @@ public class Ticket extends Entity{
         this.session = session;
     }
 
+    public Ticket() {
+
+    }
+
     public int getPlace() {
         return place;
     }

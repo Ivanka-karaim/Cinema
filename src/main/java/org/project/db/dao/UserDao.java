@@ -96,7 +96,7 @@ public class UserDao {
 
     }
 
-    public User getUserById(int id){
+    public static User getUserById(int id){
         try (Connection conn = DBManager.getInstance().getConnectionWithDriverManager();
              PreparedStatement stmt = conn.prepareStatement(USER)) {
             stmt.setInt(1, id);

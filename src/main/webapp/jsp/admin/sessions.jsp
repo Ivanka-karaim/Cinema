@@ -48,7 +48,7 @@
 
         <c:forEach var="session" items="${session}">
             <%-- Share name of publication to the command--%>
-            <tr><td><a href="publicationView?command=publicationView&view=${session.id}">${session.film.name}</a></td>
+            <tr><td><a href="session?command=session&id=${session.id}">${session.film.name}</a></td>
 
                 <td> ${session.price}</td>
                 <td> ${session.timestamp}</td>

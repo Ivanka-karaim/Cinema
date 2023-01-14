@@ -14,6 +14,7 @@ public class CommandSource {
         // common commands
         commands.put("login", new LoginCommand());
         commands.put("sessions", new SessionsCommand());
+        commands.put("session", new SessionCommand());
         commands.put("signIn", new SignInCommand());
         commands.put("edit_sessions", new EditSessionsCommand());
         commands.put("delete_session", new DeleteSessionCommand());
@@ -25,7 +26,7 @@ public class CommandSource {
 //        commands.put("deleteItem", new DeleteItemFromCartCommand());
 //        commands.put("account", new AccountCommand());
         commands.put("logout", new LogoutCommand());
-//        commands.put("buy", new BuyCommand());
+        commands.put("buy", new BuyCommand());
 //        commands.put("deleteSubscribe", new DeleteSubscribeFromAccount());
 //        commands.put("viewAccounts", new ViewAccountsCommand());
 //        commands.put("blockUser", new BlockCommand());
