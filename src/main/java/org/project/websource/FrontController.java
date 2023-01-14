@@ -10,6 +10,7 @@ import org.project.websource.command.Command;
 import org.project.websource.command.CommandSource;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 public class FrontController extends HttpServlet {
 //    @Override
@@ -52,7 +53,12 @@ public class FrontController extends HttpServlet {
         log.trace("Obtained command --> " + command);
 
         // execute command and get forward address
-        String forward = command.execute(request, response);
+        String forward = null;
+        try {
+            forward = command.execute(request, response);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         log.trace("Forward address --> " + forward);
 
         log.debug("Controller finished, now go to forward address --> " + forward);

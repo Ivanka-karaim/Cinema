@@ -61,8 +61,8 @@
         </c:forEach>
 
     </table>
-    <form action="sessions" method="get">
-        <input type="hidden" name="command" value="add_session"/>
+    <form action="edit_sessions" method="get">
+        <input type="hidden" name="command" value="add_session_form"/>
         <button class="btn btn-dark btn-lg">Додати сеанс</button>
     </form>
 <%--    <div class="container">--%>

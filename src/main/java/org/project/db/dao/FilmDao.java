@@ -94,7 +94,7 @@ public class FilmDao{
 
     }
 
-    public Film getFilmById(int id){
+    public static Film getFilmById(int id){
         try (Connection conn = DBManager.getInstance().getConnectionWithDriverManager();
              PreparedStatement stmt = conn.prepareStatement(FILM)) {
             stmt.setInt(1, id);
@@ -148,7 +148,7 @@ public class FilmDao{
                 film.setYear(rs.getInt("year"));
                 film.setDescription(rs.getString("description"));
                 film.setPhoto(rs.getString("photo"));
-                film.setDuration(rs.getTime("timestamp"));
+                film.setDuration(rs.getTime("duration"));
                 film.setGenres(genresByFilm(film.getId()));
                 films.add(film);
             }

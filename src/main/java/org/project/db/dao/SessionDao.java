@@ -11,6 +11,7 @@ import java.util.List;
 
 public class SessionDao {
     private static final String ALL_SESSION ="SELECT * FROM session WHERE timestamp > now() ORDER BY timestamp ASC";
+    private static final String ALL_SESSION_DATE ="SELECT * FROM session WHERE timestamp > ? and timestamp <? ORDER BY timestamp ASC";
     private static  final  String SESSION_PAGINATION = "SELECT * FROM session WHERE timestamp > now() ORDER BY timestamp ASC LIMIT ?,?";
     private static final String ADD_SESSION = "INSERT INTO session (timestamp, price, film_id) values (?, ?, ?);";
     private static final String DELETE_SESSION = "DELETE FROM session WHERE id=?";
@@ -35,6 +36,30 @@ public class SessionDao {
 
     }
 
+    public static List<Session> getAllSessionsWhereDate(Timestamp timestamp1, Timestamp timestamp2){
+        List<Session> sessions = new ArrayList<>();
+        try (Connection conn = DBManager.getInstance().getConnectionWithDriverManager();
+             PreparedStatement stmt = conn.prepareStatement(ALL_SESSION_DATE)) {
+            stmt.setTimestamp(1, timestamp1);
+            stmt.setTimestamp(2, timestamp2);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                Session session = new Session();
+                session.setId(rs.getInt("id"));
+                session.setTimestamp(rs.getTimestamp("timestamp"));
+                session.setPrice(rs.getDouble("price"));
+                session.setFilm(new FilmDao().getFilmById(rs.getInt("film_id")));
+                sessions.add(session);
+
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return sessions;
+
+    }
+
+
     public List<Session> getSessionsPagination(int start, int end){
         List<Session> sessions = new ArrayList<>();
         try (Connection conn = DBManager.getInstance().getConnectionWithDriverManager();
@@ -58,7 +83,7 @@ public class SessionDao {
 
     }
 
-    public Session insertSession(Session session) {
+    public static Session insertSession(Session session) {
         Connection connection = null;
         try {
             connection = DBManager.getInstance().getConnectionWithDriverManager();
@@ -73,7 +98,7 @@ public class SessionDao {
         return null;
     }
 
-    public Session addSession(Session session, Connection connection) throws SQLException {
+    public static Session addSession(Session session, Connection connection) throws SQLException {
         try (PreparedStatement stmt = connection.prepareStatement(ADD_SESSION,
                 Statement.RETURN_GENERATED_KEYS)) {
 

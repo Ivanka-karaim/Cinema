@@ -1,9 +1,14 @@
 package org.project.db.entity;
 
-public class Tickets extends Entity{
+public class Ticket extends Entity{
+
     private int place;
     private User user;
     private Session session;
+    public Ticket(int place, Session session){
+        this.place = place;
+        this.session = session;
+    }
 
     public int getPlace() {
         return place;
