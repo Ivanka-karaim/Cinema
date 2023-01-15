@@ -20,6 +20,7 @@ public class CommandSource {
         commands.put("delete_session", new DeleteSessionCommand());
         commands.put("add_session", new AddSessionCommand());
         commands.put("add_session_form", new AddSessionFormCommand());
+        commands.put("filter", new FilterCommand());
 //        commands.put("publicationView", new PublicationViewCommand());
 //        commands.put("search", new SearchCommand());
 //        commands.put("cart", new CartCommand());

@@ -1,4 +1,5 @@
-<%@ page import="org.project.db.entity.Session" %><%--
+<%@ page import="org.project.db.entity.Session" %>
+<%@ page import="java.text.SimpleDateFormat" %><%--
   Created by IntelliJ IDEA.
   User: Іванка
   Date: 12.01.2023
@@ -42,43 +43,63 @@
 </header>
 <main>
     <div class="container">
+        <div>
+            <a href="sessions?command=sessions&sort=name">
+                Сортувати за ім'ям
+            </a>
+        </div>
+        <div>
+            <form method="get">
+                <input type="hidden" name="command" value="filter"/>
+
+                    <select name="film">
+                        <c:forEach  items="${films}" var="film">
+                            <option  value="${film.id}">${film.name}</option>
+                        </c:forEach>
+                    </select>
+
+                <button>Фільтрувати</button>
+            </form>
+        </div>
         <div class="row">
+            <c:forEach  items="${session}" var="session1">
             <div class="col-md-4 ">
                 <div class="session">
 <%--                    <jsp:useBean id="session" scope="request" type="java.util.List"/>--%>
-                    <c:forEach  items="${session}" var="session1">
+
 
                     <a href="sessions?command=session&id=${session1.id}" class="a_session">
                         <img class="photo" src="">
                         <div class="text_session_block">
                             <div class="text_session">
                                 ${session1.film.name}
-                                Незвичайний світ
+
                             </div>
                             <div class="text_session">
                                     ${session1.price} грн
-                                200 грн
+
                             </div>
                         </div>
                         <div class="text_session_block">
                             <div class="text_session">
                                 ${session1.timestamp}
-                                30 листопада
+
                             </div>
                             <div class="text_session underline">
-                                19:40
+                                    ${session1.timestamp}
                             </div>
                         </div>
                     </a>
-                    </c:forEach>
+
                 </div>
             </div>
-            <div class="col-md-4">
+            </c:forEach>
+<%--            <div class="col-md-4">--%>
 
-            </div>
-            <div class="col-md-4">
+<%--            </div>--%>
+<%--            <div class="col-md-4">--%>
 
-            </div>
+<%--            </div>--%>
         </div>
     </div>
 </main>

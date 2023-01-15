@@ -19,7 +19,6 @@ public class BuyCommand extends Command{
         HttpSession session = request.getSession();
         System.out.println(session.getAttribute("userRole"));
         if (session.getAttribute("userRole")!= null) {
-            System.out.println(124341324);
             TicketDao.updateTicket(TicketDao.getTicketById(id), (User) session.getAttribute("user"));
         }
         return Path.PAGE__ACCOUNT_USER;

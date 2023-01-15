@@ -31,6 +31,8 @@ public class Session extends  Entity{
         this.film = film;
     }
 
+
+
     @Override
     public String toString() {
         return "Session{" +

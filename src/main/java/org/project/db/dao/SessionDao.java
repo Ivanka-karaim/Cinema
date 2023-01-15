@@ -11,11 +11,34 @@ import java.util.List;
 
 public class SessionDao {
     private static final String ALL_SESSION ="SELECT * FROM session WHERE timestamp > now() ORDER BY timestamp ASC";
+    private static final String ALL_SESSION_FILM ="SELECT * FROM session WHERE timestamp > now() and film_id=? ORDER BY timestamp ASC";
     private static final String ALL_SESSION_DATE ="SELECT * FROM session WHERE timestamp > ? and timestamp <? ORDER BY timestamp ASC";
     private static  final  String SESSION_PAGINATION = "SELECT * FROM session WHERE timestamp > now() ORDER BY timestamp ASC LIMIT ?,?";
     private static final String ADD_SESSION = "INSERT INTO session (timestamp, price, film_id) values (?, ?, ?);";
     private static final String DELETE_SESSION = "DELETE FROM session WHERE id=?";
     private static final String GET_SESSION_ID = "SELECT * FROM session WHERE id=?";
+    private static final String ALL_SESSION_SORT_NAME = "SELECT * FROM session, films WHERE session.timestamp > now() and session.film_id= films.id ORDER BY films.name ASC";
+    private static final String ALL_SESSION_SORT_COUNT= "SELECT * FROM session, tickets WHERE tickets.session_id= session.id and session.timestamp> now() GROUP BY tickets.session_id ORDER BY COUNT(tickets.user_id) ASC";
+
+    public static List<Session> getSessionsByFilm(int film_id){
+        List<Session> sessions = new ArrayList<>();
+        try (Connection conn = DBManager.getInstance().getConnectionWithDriverManager();
+             PreparedStatement stmt = conn.prepareStatement(ALL_SESSION_FILM)) {
+            stmt.setInt(1, film_id);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                Session session = new Session();
+                session.setId(rs.getInt("id"));
+                session.setTimestamp(rs.getTimestamp("timestamp"));
+                session.setPrice(rs.getDouble("price"));
+                session.setFilm(new FilmDao().getFilmById(rs.getInt("film_id")));
+                sessions.add(session);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return sessions;
+    }
     public static Session getSessionByID(int id){
             try (Connection conn = DBManager.getInstance().getConnectionWithDriverManager();
                  PreparedStatement stmt = conn.prepareStatement(GET_SESSION_ID)) {
@@ -37,6 +60,46 @@ public class SessionDao {
         List<Session> sessions = new ArrayList<>();
         try (Connection conn = DBManager.getInstance().getConnectionWithDriverManager();
              PreparedStatement stmt = conn.prepareStatement(ALL_SESSION)) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                Session session = new Session();
+                session.setId(rs.getInt("id"));
+                session.setTimestamp(rs.getTimestamp("timestamp"));
+                session.setPrice(rs.getDouble("price"));
+                session.setFilm(new FilmDao().getFilmById(rs.getInt("film_id")));
+                sessions.add(session);
+
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return sessions;
+
+    }
+    public static List<Session> getAllSessionsCount(){
+        List<Session> sessions = new ArrayList<>();
+        try (Connection conn = DBManager.getInstance().getConnectionWithDriverManager();
+             PreparedStatement stmt = conn.prepareStatement(ALL_SESSION_SORT_COUNT)) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                Session session = new Session();
+                session.setId(rs.getInt("id"));
+                session.setTimestamp(rs.getTimestamp("timestamp"));
+                session.setPrice(rs.getDouble("price"));
+                session.setFilm(new FilmDao().getFilmById(rs.getInt("film_id")));
+                sessions.add(session);
+
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return sessions;
+
+    }
+    public static List<Session> getAllSessionsSortName(){
+        List<Session> sessions = new ArrayList<>();
+        try (Connection conn = DBManager.getInstance().getConnectionWithDriverManager();
+             PreparedStatement stmt = conn.prepareStatement(ALL_SESSION_SORT_NAME)) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){
                 Session session = new Session();

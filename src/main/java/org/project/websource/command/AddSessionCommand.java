@@ -57,7 +57,7 @@ public class AddSessionCommand extends Command{
             }
 
             Session session1 = SessionDao.insertSession(session);
-            for (int i=1; i<=80; i++) {
+            for (int i=1; i<=84; i++) {
                 TicketDao.insertTicket(new Ticket(i, session1));
             }
 
