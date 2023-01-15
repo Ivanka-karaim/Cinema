@@ -25,7 +25,7 @@ public class CommandSource {
 //        commands.put("search", new SearchCommand());
 //        commands.put("cart", new CartCommand());
 //        commands.put("deleteItem", new DeleteItemFromCartCommand());
-//        commands.put("account", new AccountCommand());
+        commands.put("account", new AccountCommand());
         commands.put("logout", new LogoutCommand());
         commands.put("buy", new BuyCommand());
 //        commands.put("deleteSubscribe", new DeleteSubscribeFromAccount());

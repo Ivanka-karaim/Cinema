@@ -26,7 +26,7 @@ public class SessionsCommand extends Command{
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         log.debug("Command starts");
-        List<Session> sessions = null;
+        List<Session> sessions;
         if (Objects.equals(request.getParameter("sort"), "name")){
             sessions = SessionDao.getAllSessionsSortName();
 

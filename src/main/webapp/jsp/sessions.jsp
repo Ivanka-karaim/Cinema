@@ -34,8 +34,11 @@
         <div class="header">
 
             <div class="logo">CiNeMa</div>
-            <a href="" class="login">
-                <div class="text_login">Увійти</div>
+            <a href="sessions" class="login">
+                <div class="text_login">Сеанси</div>
+            </a>
+            <a href="account" class="login">
+                <div class="text_login">Профіль</div>
                 <div class="icon"><i class="fa-solid fa-user"></i></div>
             </a>
         </div>
@@ -43,22 +46,38 @@
 </header>
 <main>
     <div class="container">
-        <div>
-            <a href="sessions?command=sessions&sort=name">
+        <div class="header">
+
+            <a href="sessions?command=sessions&sort=name" style="text-decoration-line: none; ">
+                <div class="button_enter flex" style=" width:100%; padding: 0 60px; font-size: 20px">
                 Сортувати за ім'ям
+                </div>
+            </a>
+
+            <a href="sessions?command=sessions" style="text-decoration-line: none; ">
+                <div class="button_enter flex" style=" width:100%; padding: 0 60px; font-size: 20px">
+                Сортувати за датою
+                </div>
+            </a>
+            <a href="sessions?command=sessions&sort=countPlace" style="text-decoration-line: none; ">
+                <div class="button_enter flex" style=" width:100%; padding: 0 60px; font-size: 20px">
+                Сортувати за кількістю доступних місць
+                </div>
             </a>
         </div>
+
         <div>
             <form method="get">
+                <div class="header justify-content-center" style="margin-top: 30px">
                 <input type="hidden" name="command" value="filter"/>
-
-                    <select name="film">
+                    <select name="film" class="input" style="width: 40%; margin-right: 50px">
                         <c:forEach  items="${films}" var="film">
                             <option  value="${film.id}">${film.name}</option>
                         </c:forEach>
                     </select>
 
-                <button>Фільтрувати</button>
+                <button class="button_enter" style="width: 30%">Фільтрувати</button>
+                </div>
             </form>
         </div>
         <div class="row">
@@ -85,9 +104,9 @@
                                 ${session1.timestamp}
 
                             </div>
-                            <div class="text_session underline">
-                                    ${session1.timestamp}
-                            </div>
+<%--                            <div class="text_session underline">--%>
+<%--                                    ${session1.timestamp}--%>
+<%--                            </div>--%>
                         </div>
                     </a>
 
@@ -101,6 +120,7 @@
 
 <%--            </div>--%>
         </div>
+
     </div>
 </main>
 <script src="https://kit.fontawesome.com/1467b92032.js" crossorigin="anonymous"></script>

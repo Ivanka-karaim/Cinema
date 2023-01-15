@@ -33,11 +33,12 @@
         <div class="header">
 
             <div class="logo">CiNeMa</div>
+
             <a href="sessions" class="login">
                 <div class="text_login">Сеанси</div>
             </a>
-            <a href="" class="login">
-                <div class="text_login">Увійти</div>
+            <a href="account" class="login">
+                <div class="text_login">Профіль</div>
                 <div class="icon"><i class="fa-solid fa-user"></i></div>
             </a>
         </div>
@@ -52,30 +53,30 @@
             <div class="col-md-6">
                 <div class="flex-column justify-content-between align-content-between height100 width100">
                     <div class="name_film">${session.film.name}
-                        Незвичайний світ
+
                     </div>
                     <p class="text_film">
-                        kfkfkfkfkffkkfkfkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkffffffffffffffffffffffffffffffffffffffffffkkkffffffff
+                        ${session.film.description}
                     </p>
                     <div class="text_film">
-                        Автор: Караїм Іванна
+                        Автор: ${session.film.author}
                     </div>
                     <div class="text_film">
-                        Рік:2020
+                        Рік:${session.film.year}
                     </div>
                     <div class="text_film">
-                        Країна: Україна
+                        Країна: ${session.film.country}
                     </div>
                     <div class="text_price">
-                        Ціна:200грн
+                        Ціна:${session.price}грн
                     </div>
                     <div class="text_session_block">
                         <div class="text_session">
-                            30 листопада
+                            ${session.timestamp}
                         </div>
-                        <div class="text_session underline">
-                            19:40
-                        </div>
+<%--                        <div class="text_session underline">--%>
+<%--                            19:40--%>
+<%--                        </div>--%>
                     </div>
                 </div>
 
@@ -87,9 +88,11 @@
                 <c:forEach items="${tickets}" var="ticket">
                     <c:if test="${ticket.user==null}" >
                 <div class="col-md-1">
-                    <div class="place_free">
-                    <a href="sessions?command=buy&id=${ticket.id}" >
+                    <div class="place_free_a">
+                    <a href="sessions?command=buy&id=${ticket.id}" class="place_free_a">
+                        <div class="place_free">
                         ${ticket.place}
+                        </div>
                     </a>
                     </div>
                 </div>

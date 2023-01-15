@@ -34,25 +34,24 @@
         <div class="header">
 
             <div class="logo">CiNeMa</div>
-            <c:if test="${session.getAttribute('userRole').isPresent()}">
-            <a onclick="location.href='account?command=account'"  class="login">
+            <a href="sessions" class="login">
+                <div class="text_login">Сеанси</div>
+            </a>
+            <a href="account" class="login">
                 <div class="text_login">Профіль</div>
                 <div class="icon"><i class="fa-solid fa-user"></i></div>
             </a>
-            </c:if>
 
-            <a href="" class="login">
-                <div class="text_login">Увійти</div>
-                <div class="icon"><i class="fa-solid fa-user"></i></div>
-            </a>
 
         </div>
     </div>
 </header>
 <main>
-<form action="" method="post" >
+    <form action="" method="post" >
         <input type="hidden" name="command" value="logout"/>
-        <button class="btn btn-dark btn-lg">Вийти</button>
+        <div class="flex align-items-center " style="margin-left: 25%;">
+            <button class="button_enter ">Вийти</button>
+        </div>
     </form>
 </main>
 

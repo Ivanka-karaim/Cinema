@@ -30,8 +30,12 @@
         <div class="header">
 
             <div class="logo">CiNeMa</div>
-            <a href="" class="login">
-                <div class="text_login">Увійти</div>
+
+            <a href="sessions" class="login">
+                <div class="text_login">Сеанси</div>
+            </a>
+            <a href="account" class="login">
+                <div class="text_login">Профіль</div>
                 <div class="icon"><i class="fa-solid fa-user"></i></div>
             </a>
         </div>

@@ -34,29 +34,29 @@
         <div class="header">
 
             <div class="logo">CiNeMa</div>
-            <%if( session.getAttribute("userRole").equals("admin")) { %>
-            <a onclick="location.href='account?command=account'"  class="login">
+            <a href="account" class="login">
                 <div class="text_login">Профіль</div>
                 <div class="icon"><i class="fa-solid fa-user"></i></div>
             </a>
-            <% } else {%>
-            <a href="" class="login">
-                <div class="text_login">Увійти</div>
-                <div class="icon"><i class="fa-solid fa-user"></i></div>
-            </a>
-            <%  }%>
         </div>
     </div>
 </header>
 <main>
+    <div class="container">
+        <form action="sessions" method="get">
+            <input type="hidden" name="command" value="edit_sessions"/>
+            <div class="flex align-items-center " style="margin-left: 25%;margin-bottom: 50px">
+            <button class="button_enter">Редагувати сеанси</button>
+            </div>
+        </form>
     <form action="" method="post" >
         <input type="hidden" name="command" value="logout"/>
-        <button class="btn btn-dark btn-lg">Вийти</button>
+        <div class="flex align-items-center " style="margin-left: 25%;">
+        <button class="button_enter ">Вийти</button>
+        </div>
     </form>
-    <form action="sessions" method="get">
-        <input type="hidden" name="command" value="edit_sessions"/>
-        <button class="btn btn-dark btn-lg">Редагувати сеанси</button>
-    </form>
+
+    </div>
 </main>
 
 </body>

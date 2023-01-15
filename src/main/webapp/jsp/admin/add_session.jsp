@@ -30,30 +30,40 @@
         <div class="header">
 
             <div class="logo">CiNeMa</div>
-            <a href="" class="login">
-                <div class="text_login">Увійти</div>
+            <a href="account" class="login">
+                <div class="text_login">Профіль</div>
                 <div class="icon"><i class="fa-solid fa-user"></i></div>
             </a>
         </div>
     </div>
 </header>
 <main>
-    <form action="add_session" method="post">
-        <input type="hidden" name="command" value="add_session"/>
-        <div class="input_block">
-        <input title="time"  type="datetime-local" name="timestamp" >
-        </div>
-        <div class="input_block">
-        <input title="price" type="text" name="price">
-        </div>
+    <div class="container">
+        <div class="flex align-items-center">
+    <form action="add_session" method="post" class="login_store">
 
-        <select title="film" name="film" STYLE="width:200px;">
+        <input type="hidden" name="command" value="add_session"/>
+        <div class="input_block text_film" style="font-size: 15px">
+            Виберіть дату
+        <input title="time"  type="datetime-local" name="timestamp" class="input">
+        </div>
+        <div class="input_block text_film" style="font-size: 15px">
+            Введіть ціну
+        <input title="price" type="text" name="price" class="input">
+        </div>
+        <div class="input_block text_film" style="font-size: 15px">
+            Виберіть фільм
+        <select title="film" name="film"  class="input">
                 <c:forEach var="film" items="${films}" >
                     <option value="${film.id}">${film.name}</option>
                 </c:forEach>
             </select>
+        </div>
         <button class="button_enter">Зберегти</button>
+
     </form>
+        </div>
+    </div>
 </main>
 
 </body>

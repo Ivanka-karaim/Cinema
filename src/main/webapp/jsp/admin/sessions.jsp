@@ -34,36 +34,41 @@
         <div class="header">
 
             <div class="logo">CiNeMa</div>
-            <a href="" class="login">
-                <div class="text_login">Увійти</div>
+            <a href="account" class="login">
+                <div class="text_login">Профіль</div>
                 <div class="icon"><i class="fa-solid fa-user"></i></div>
             </a>
         </div>
     </div>
 </header>
 <main>
+    <div class="container">
     <table class="table table-hover mt-2">
-        <tr><th><fmt:message key="publication.name"/></th><th><fmt:message key="publication.price_for_mounth"/></th><th><fmt:message key="publication.description"/></th><th></th></tr>
+        <thead>
+        <tr><th class="text_film" style="font-size: 20px">Назва Фільму</th><th class="text_film" style="font-size: 20px">Ціна</th><th class="text_film" style="font-size: 20px">Дата</th><th></th><th></th></tr></thead>
         <input type="hidden" name="command" value="publicationView"/>
 
         <c:forEach var="session" items="${session}">
             <%-- Share name of publication to the command--%>
-            <tr><td><a href="session?command=session&id=${session.id}">${session.film.name}</a></td>
+            <tr><td><a  style="text-decoration-color: white" href="session?command=session&id=${session.id}"><div class="text_login">${session.film.name}</div></a></td>
 
-                <td> ${session.price}</td>
-                <td> ${session.timestamp}</td>
+                <td class="text_film" style="font-size: 20px"> ${session.price}</td>
+                <td class="text_film" style="font-size: 20px"> ${session.timestamp}</td>
 
-                <td> <button class="btn btn-outline-primary" onclick="location.href='sessions?command=delete_session&id=${session.id}'">
+                <td> <button class="button_enter" style="font-size: 25px; width:100%" onclick="location.href='sessions?command=delete_session&id=${session.id}'">
                     Видалити
                 </button></td>
-                </td>
+                <td> <button class="button_enter" style="font-size: 20px; line-height: 30px!important;  width:100%" onclick="location.href='sessions?command=session&id=${session.id}'">
+                    Перевірити кількість місць
+                </button></td>
+
             </tr>
         </c:forEach>
 
     </table>
     <form action="edit_sessions" method="get">
         <input type="hidden" name="command" value="add_session_form"/>
-        <button class="btn btn-dark btn-lg">Додати сеанс</button>
+        <button class="button_enter" style="margin-top: 30px">Додати сеанс</button>
     </form>
 <%--    <div class="container">--%>
 <%--        <div class="row">--%>
@@ -103,6 +108,7 @@
 <%--            </div>--%>
 <%--        </div>--%>
 <%--    </div>--%>
+    </div>
 </main>
 <script src="https://kit.fontawesome.com/1467b92032.js" crossorigin="anonymous"></script>
 </body>
