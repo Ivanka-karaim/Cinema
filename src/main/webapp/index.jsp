@@ -122,7 +122,7 @@
 <main>
     <div class="container">
         <div class="flex align-items-center">
-            <form action="login" class="login_store"  method="post">
+            <form action="account" class="login_store"  method="post">
                 <input type="hidden" name="command" value="login"/>
                 <% if (request.getAttribute("errorMessageLogin") != null ) {%>
                 <div>

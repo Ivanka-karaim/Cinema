@@ -5,7 +5,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
+import org.project.db.dao.TicketDao;
 import org.project.db.dao.UserDao;
+import org.project.db.entity.Ticket;
 import org.project.db.entity.User;
 import org.project.websource.Path;
 import org.project.websource.command.Command;
@@ -72,6 +74,9 @@ public class LoginCommand extends Command {
                 System.out.println(1234);
                 forward = Path.PAGE__ACCOUNT_ADMIN;
             }else {
+                List<Ticket> tickets = TicketDao.getTicketByUser(user);
+                request.setAttribute("tickets", tickets);
+
                 forward = Path.PAGE__ACCOUNT_USER;
             }
 

@@ -15,7 +15,34 @@ public class TicketDao {
     private static final String ADD_SESSION = "INSERT INTO tickets (place, session_id) values (?, ?);";
     private static final String GET_TICKETS_SESSION = "SELECT * FROM tickets WHERE session_id=?";
     private static final String TICKET = "SELECT * FROM tickets WHERE id=?";
+    private static final String TICKET_USER = "SELECT * FROM tickets WHERE user_id=?";
 
+    public static List<Ticket> getTicketByUser(User user){
+        List<Ticket> tickets = new ArrayList<>();
+        try (Connection conn = DBManager.getInstance().getConnectionWithDriverManager();
+             PreparedStatement stmt = conn.prepareStatement(TICKET_USER)) {
+            stmt.setInt(1, user.getId());
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()) {
+
+                Ticket ticket = new Ticket();
+                ticket.setId(rs.getInt("id"));
+                ticket.setPlace(rs.getInt("place"));
+                ticket.setSession(SessionDao.getSessionByID(rs.getInt("session_id")));
+                int user1 = rs.getInt("user_id");
+                if (user1 != 0) {
+                    ticket.setUser(UserDao.getUserById(user1));
+                } else {
+                    ticket.setUser(null);
+                }
+                tickets.add(ticket);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return tickets;
+    }
     public static boolean deleteTicketsBySession(int id)  {
         Connection conn = null;
         try {

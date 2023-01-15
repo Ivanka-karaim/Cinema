@@ -47,6 +47,21 @@
     </div>
 </header>
 <main>
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr><th class="text_film" style="font-size: 20px">Назва Фільму</th><th class="text_film" style="font-size: 20px">Ціна</th><th class="text_film" style="font-size: 20px">Дата</th><th class="text_film" style="font-size: 20px">Місце</th><th></th></tr></thead>
+            <c:forEach items="${tickets}" var="ticket">
+             <tr>
+                 <td class="text_film" style="font-size: 20px">${ticket.session.film.name}</td>
+                 <td class="text_film" style="font-size: 20px">${ticket.session.price}</td>
+                 <td class="text_film" style="font-size: 20px">${ticket.session.timestamp}</td>
+                 <td class="text_film" style="font-size: 20px">${ticket.place}</td>
+             </tr>
+            </c:forEach>
+        </table>
+
+    </div>
     <form action="" method="post" >
         <input type="hidden" name="command" value="logout"/>
         <div class="flex align-items-center " style="margin-left: 25%;">

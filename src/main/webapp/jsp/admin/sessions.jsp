@@ -46,7 +46,7 @@
     <table class="table table-hover mt-2">
         <thead>
         <tr><th class="text_film" style="font-size: 20px">Назва Фільму</th><th class="text_film" style="font-size: 20px">Ціна</th><th class="text_film" style="font-size: 20px">Дата</th><th></th><th></th></tr></thead>
-        <input type="hidden" name="command" value="publicationView"/>
+
 
         <c:forEach var="session" items="${session}">
             <%-- Share name of publication to the command--%>

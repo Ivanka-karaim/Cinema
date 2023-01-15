@@ -262,6 +262,17 @@ hr{
 }
 
 .place_notfree{
+
+
+  color: #70587C;
+  font-family: 'Inter', cursive;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 40px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-decoration-line:none;
   margin-top: 20px;
   background: #959595;
   border-radius: 15px;
