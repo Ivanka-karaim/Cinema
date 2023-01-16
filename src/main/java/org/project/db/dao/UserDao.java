@@ -11,7 +11,7 @@ public class UserDao {
     private static final String LOGIN = "SELECT * FROM users WHERE email = ?";
     private static final String USER = "SELECT * FROM users WHERE id = ?";
 
-    public User insertUser(User user) throws SQLException {
+    public static User insertUser(User user) throws SQLException {
         Connection conn = null;
 
         try {
@@ -21,13 +21,14 @@ public class UserDao {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             DBManager.getInstance().rollbackAndClose(conn);
+
         } finally {
             DBManager.getInstance().commitAndClose(conn);
         }
         return null;
 
     }
-    public User addUser(User user, Connection connection) throws SQLException {
+    public static User addUser(User user, Connection connection) throws SQLException {
         try (PreparedStatement stmt = connection.prepareStatement(ADD_USER,
                 Statement.RETURN_GENERATED_KEYS)) {
 
@@ -69,7 +70,7 @@ public class UserDao {
         }
         return true;
     }
-    public User getUserByEmail(String email){
+    public static User getUserByEmail(String email){
         try (Connection conn = DBManager.getInstance().getConnectionWithDriverManager();
         PreparedStatement stmt = conn.prepareStatement(LOGIN)) {
             System.out.println(email);

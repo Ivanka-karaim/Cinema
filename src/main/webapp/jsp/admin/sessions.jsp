@@ -50,7 +50,7 @@
 
         <c:forEach var="session" items="${session}">
             <%-- Share name of publication to the command--%>
-            <tr><td><a  style="text-decoration-color: white" href="session?command=session&id=${session.id}"><div class="text_login">${session.film.name}</div></a></td>
+            <tr><td><a  style="text-decoration-color: white" href="session?command=session&id=${session.id}"><div class="text_login">${session.name}</div></a></td>
 
                 <td class="text_film" style="font-size: 20px"> ${session.price}</td>
                 <td class="text_film" style="font-size: 20px"> ${session.timestamp}</td>

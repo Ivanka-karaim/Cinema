@@ -1,20 +1,38 @@
 package org.project.websource.service;
 
 import org.project.db.dao.TicketDao;
-import org.project.db.entity.Session;
+import org.project.db.dao.UserDao;
+import org.project.db.dto.TicketDTO;
 import org.project.db.entity.Ticket;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class TicketService {
-    public static int countFreePlace(Session session){
-        int i=0;
-        List<Ticket> tickets = TicketDao.get_tickets(session);
-        for (Ticket ticket: tickets){
-            if (ticket.getUser()!=null){
-                i++;
-            }
+
+
+    public List<TicketDTO> getTicketsByUser(int id) {
+        List<Ticket> tickets = TicketDao.getTicketByUser(Objects.requireNonNull(UserDao.getUserById(id)));
+        return parsingTicketInTicketDTO(tickets);
+    }
+    public boolean updateTicket(int id, int id_user){
+        return TicketDao.updateTicket(id,id_user);
+    }
+
+    private List<TicketDTO> parsingTicketInTicketDTO(List<Ticket> list) {
+        List<TicketDTO> ticketDTOs = new ArrayList<>();
+        for (Ticket ticket : list) {
+            ticketDTOs.add(new TicketDTO(ticket.getId(), ticket.getPlace(),  ticket.getSession().getFilm().getName(), ticket.getSession().getPrice(), ticket.getSession().getTimestamp(), ticket.getUser()));
+
+
         }
-        return i;
+        return ticketDTOs;
+    }
+
+    public List<TicketDTO> getTickets(int id_session) {
+        List<Ticket> tickets = TicketDao.get_tickets(id_session);
+        return parsingTicketInTicketDTO(tickets);
+
     }
 }

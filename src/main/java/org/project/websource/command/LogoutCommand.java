@@ -18,7 +18,6 @@ public class LogoutCommand extends Command {
         log.debug("Command starts");
 
         HttpSession session = request.getSession();
-
             session.removeAttribute("user");
             session.removeAttribute("userRole");
 

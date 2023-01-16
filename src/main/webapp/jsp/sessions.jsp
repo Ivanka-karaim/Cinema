@@ -91,7 +91,7 @@
                         <img class="photo" src="">
                         <div class="text_session_block">
                             <div class="text_session">
-                                ${session1.film.name}
+                                ${session1.name}
 
                             </div>
                             <div class="text_session">

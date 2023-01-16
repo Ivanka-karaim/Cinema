@@ -53,9 +53,9 @@
             <tr><th class="text_film" style="font-size: 20px">Назва Фільму</th><th class="text_film" style="font-size: 20px">Ціна</th><th class="text_film" style="font-size: 20px">Дата</th><th class="text_film" style="font-size: 20px">Місце</th><th></th></tr></thead>
             <c:forEach items="${tickets}" var="ticket">
              <tr>
-                 <td class="text_film" style="font-size: 20px">${ticket.session.film.name}</td>
-                 <td class="text_film" style="font-size: 20px">${ticket.session.price}</td>
-                 <td class="text_film" style="font-size: 20px">${ticket.session.timestamp}</td>
+                 <td class="text_film" style="font-size: 20px">${ticket.film_name}</td>
+                 <td class="text_film" style="font-size: 20px">${ticket.price}</td>
+                 <td class="text_film" style="font-size: 20px">${ticket.timestamp}</td>
                  <td class="text_film" style="font-size: 20px">${ticket.place}</td>
              </tr>
             </c:forEach>

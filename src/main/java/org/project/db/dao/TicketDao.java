@@ -115,11 +115,11 @@ public class TicketDao {
         return ticket;
 
     }
-    public static List<Ticket> get_tickets(Session session){
+    public static List<Ticket> get_tickets(int id){
         List<Ticket> tickets = new ArrayList<>();
         try (Connection conn = DBManager.getInstance().getConnectionWithDriverManager();
              PreparedStatement stmt = conn.prepareStatement(GET_TICKETS_SESSION)) {
-            stmt.setInt(1, session.getId());
+            stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             while( rs.next()) {
                 Ticket ticket = new Ticket();
@@ -139,13 +139,13 @@ public class TicketDao {
         }
         return tickets;
     }
-    public static boolean updateTicket(Ticket ticket, User user){
+    public static boolean updateTicket(int id_ticket, int id_user){
         Connection conn = null;
         try {
             conn = DBManager.getInstance().getConnectionWithDriverManager();
             PreparedStatement stmt = conn.prepareStatement(UPDATE_TICKET) ;
-            stmt.setInt(1, user.getId());
-            stmt.setInt(2, ticket.getId());
+            stmt.setInt(1, id_user);
+            stmt.setInt(2, id_ticket);
             stmt.executeUpdate();
 
         } catch (SQLException throwables) {

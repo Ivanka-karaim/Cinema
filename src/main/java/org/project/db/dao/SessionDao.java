@@ -76,7 +76,7 @@ public class SessionDao {
         return sessions;
 
     }
-    public static List<Session> getAllSessionsCount(){
+    public static List<Session> getAllSessionsSortCount(){
         List<Session> sessions = new ArrayList<>();
         try (Connection conn = DBManager.getInstance().getConnectionWithDriverManager();
              PreparedStatement stmt = conn.prepareStatement(ALL_SESSION_SORT_COUNT)) {

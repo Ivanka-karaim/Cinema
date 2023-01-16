@@ -52,20 +52,20 @@
             </div>
             <div class="col-md-6">
                 <div class="flex-column justify-content-between align-content-between height100 width100">
-                    <div class="name_film">${session.film.name}
+                    <div class="name_film">${session.name}
 
                     </div>
                     <p class="text_film">
-                        ${session.film.description}
+                        ${session.description}
                     </p>
                     <div class="text_film">
-                        Автор: ${session.film.author}
+                        Автор: ${session.author}
                     </div>
                     <div class="text_film">
-                        Рік:${session.film.year}
+                        Рік:${session.year}
                     </div>
                     <div class="text_film">
-                        Країна: ${session.film.country}
+                        Країна: ${session.country}
                     </div>
                     <div class="text_price">
                         Ціна:${session.price}грн
@@ -86,7 +86,7 @@
         <div class="places">
             <div class="row">
                 <c:forEach items="${tickets}" var="ticket">
-                    <c:if test="${ticket.user==null}" >
+                    <c:if test="${ticket.user==false}" >
                 <div class="col-md-1">
                     <div class="place_free_a">
                     <a href="sessions?command=buy&id=${ticket.id}" class="place_free_a">
@@ -97,7 +97,7 @@
                     </div>
                 </div>
                 </c:if>
-                    <c:if test="${ticket.user!=null}" >
+                    <c:if test="${ticket.user}" >
                         <div class="col-md-1">
                             <div class="place_notfree">
                                     ${ticket.place}
