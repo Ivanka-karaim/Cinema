@@ -64,5 +64,45 @@ public class SessionService {
         List<Session> sessions = SessionDao.getAllSessionsSortCount();
         return parsingSessionInSessionDTO(sessions);
     }
+    public boolean createSession(String timestamp, String price, String film){
+        Session session = new Session();
+        String dateTime = timestamp;
+        System.out.println(dateTime);
+        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.US);
+
+        Date date = null;
+        try {
+            date = inputFormat.parse(dateTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        System.out.println(date);
+        session.setTimestamp(Timestamp.valueOf(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date)));
+        session.setPrice(Double.parseDouble(price));
+        session.setFilm(FilmDao.getFilmById(Integer.parseInt(film)));
+
+        if (Timestamp.valueOf(session.getTimestamp().toString().split(" ")[0]+" 09:00:00.0").compareTo(session.getTimestamp()) > 0 || Timestamp.valueOf(session.getTimestamp().toString().split(" ")[0]+" 22:00:00.0").compareTo(session.getTimestamp()) < 0){
+            System.out.println("error");
+        }
+        List<Session> session_today = SessionDao.getAllSessionsWhereDate(Timestamp.valueOf(session.getTimestamp().toString().split(" ")[0]+" 00:00:00.0"),Timestamp.valueOf(session.getTimestamp().toString().split(" ")[0]+" 23:59:00.0") );
+        System.out.println(session.getTimestamp().getTime());
+        System.out.println(session.getTimestamp().getTime()+session.getFilm().getDuration().getTime());
+
+        for (Session s: session_today){
+            if (session.getTimestamp().getTime() < s.getTimestamp().getTime()+s.getFilm().getDuration().getTime() && session.getTimestamp().getTime() > s.getTimestamp().getTime()){
+                System.out.println("error1");
+            }
+            if (session.getTimestamp().getTime()<s.getTimestamp().getTime() && session.getTimestamp().getTime()+session.getFilm().getDuration().getTime() > s.getTimestamp().getTime()){
+                System.out.println("error2");
+            }
+
+        }
+
+        Session session1 = SessionDao.insertSession(session);
+        for (int i=1; i<=84; i++) {
+            TicketDao.insertTicket(new Ticket(i, session1));
+        }
+        return true;
+    }
 
 }
