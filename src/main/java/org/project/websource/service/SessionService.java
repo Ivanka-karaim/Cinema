@@ -29,6 +29,11 @@ public class SessionService {
         return parsingSessionInSessionDTO(sessions);
 
     }
+    public List<SessionDTO> getAllSessionsForPagination(int currentPage){
+        int start = currentPage * 12 - 12;
+        List<Session> sessions1 = SessionDao.getAllSessionsForPagination(start, 12);
+        return parsingSessionInSessionDTO(sessions1);
+    }
     public List<SessionDTO> getSessionsByFilm(int id){
         List<Session> sessions = SessionDao.getSessionsByFilm(id);
         return parsingSessionInSessionDTO(sessions);
@@ -40,8 +45,9 @@ public class SessionService {
         s.add(session);
         return parsingSessionInSessionDTO(s).get(0);
     }
-    public List<SessionDTO> getAllSessionsSortName(){
-        List<Session> sessions = SessionDao.getAllSessionsSortName();
+    public List<SessionDTO> getAllSessionsSortName(int currentPage){
+        int start = currentPage * 12 - 12;
+        List<Session> sessions = SessionDao.getAllSessionsSortName(start, 12);
         return parsingSessionInSessionDTO(sessions);
     }
     private List<SessionDTO> parsingSessionInSessionDTO(List<Session> list) {
@@ -61,8 +67,9 @@ public class SessionService {
         return sessionDTOS;
     }
 
-    public List<SessionDTO> getAllSessionsCount() {
-        List<Session> sessions = SessionDao.getAllSessionsSortCount();
+    public List<SessionDTO> getAllSessionsCount(int currentPage) {
+        int start = currentPage * 12 - 12;
+        List<Session> sessions = SessionDao.getAllSessionsSortCount(start, 12);
         return parsingSessionInSessionDTO(sessions);
     }
     public boolean createSession(String timestamp, String price, String film) throws Exception {

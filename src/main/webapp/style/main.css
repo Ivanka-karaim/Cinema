@@ -314,4 +314,24 @@ th, td {
   padding: 5px;
   border:  3px  purple;
 }
+.page-link{
+  width: 50px;
+  height: 50px;
+  background: #3D2645;
+  border: 3px #B2B9BF;
+  margin: 10px;
+  padding:10px;
+  cursor: pointer;
+
+
+}
+li{
+  list-style-type: none;
+}
+.page-items{
+ marker:none;
+}
+.pagination{
+  display: flex;
+}
 

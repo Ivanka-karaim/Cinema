@@ -113,6 +113,16 @@
                 </div>
             </div>
             </c:forEach>
+            <nav aria-label="Page navigation example">
+                <ul class="flex justify-content-center pagination">
+                    <c:forEach items="${nOfPages}" var="number">
+                    <li class="page-items">
+                        <button class=" page-link text_film" style="line-height: 30px" onclick="current(${number})">${number}</button></li>
+                    </c:forEach>
+<%--                        <li class="page-item"><a class="page-link" href="publicationView?command=publication&recordsPerPage=5&currentPage=2">2</a></li>--%>
+<%--                    <li class="page-item"><a class="page-link" href="publicationView?command=publication&recordsPerPage=5&currentPage=3">3</a></li>--%>
+                </ul>
+            </nav>
 <%--            <div class="col-md-4">--%>
 
 <%--            </div>--%>
@@ -124,5 +134,44 @@
     </div>
 </main>
 <script src="https://kit.fontawesome.com/1467b92032.js" crossorigin="anonymous"></script>
+<script>
+    function current(page){
+        const mass = window.location.href.split("?")
+        if (mass.length===2) {
+            const hr = mass[0]
+            const kvp = window.location.href.split("?")[1].split("&");
+            console.log(kvp);
+            let i = 0;
+
+            for (; i < kvp.length; i++) {
+                console.log(kvp);
+                if (kvp[i].startsWith("currentPage=")) {
+                    let pair = kvp[i].split('=');
+                    pair[1] = page;
+                    kvp[i] = pair.join('=');
+                    break;
+                }
+            }
+            if (i >= kvp.length) {
+                kvp[kvp.length] = ["currentPage", page].join('=');
+            }
+            // can return this or...
+            console.log(kvp);
+            let params = kvp.join('&');
+
+            // reload page with new params
+
+            window.location.href = hr+"?"+params;
+        }else {
+            const hr = window.location.href;
+            window.location.href= hr+"?currentPage="+page;
+        }
+
+
+
+
+
+    }
+</script>
 </body>
 </html>
