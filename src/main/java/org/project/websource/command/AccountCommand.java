@@ -4,12 +4,10 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.project.db.dao.TicketDao;
-import org.project.db.dao.UserDao;
+
 import org.project.db.dto.TicketDTO;
 import org.project.db.dto.UserDTO;
-import org.project.db.entity.Ticket;
-import org.project.db.entity.User;
+
 import org.project.websource.Path;
 import org.project.websource.service.TicketService;
 
@@ -26,7 +24,6 @@ public class AccountCommand extends Command {
         if (sessionHttp.getAttribute("userRole")== null) {
             return Path.PAGE__WELCOME;
         }else if (sessionHttp.getAttribute("userRole").equals("user")) {
-            System.out.println(133655);
             UserDTO user = (UserDTO) sessionHttp.getAttribute("user");
             request.setAttribute("user", user);
 //            List<Ticket> tickets = TicketDao.getTicketByUser(user);

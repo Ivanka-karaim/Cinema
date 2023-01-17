@@ -17,11 +17,11 @@ public class TicketDao {
     private static final String TICKET = "SELECT * FROM tickets WHERE id=?";
     private static final String TICKET_USER = "SELECT * FROM tickets WHERE user_id=?";
 
-    public static List<Ticket> getTicketByUser(User user){
+    public static List<Ticket> getTicketByUser(int id){
         List<Ticket> tickets = new ArrayList<>();
         try (Connection conn = DBManager.getInstance().getConnectionWithDriverManager();
              PreparedStatement stmt = conn.prepareStatement(TICKET_USER)) {
-            stmt.setInt(1, user.getId());
+            stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             while(rs.next()) {
 

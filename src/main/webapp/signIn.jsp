@@ -10,6 +10,7 @@
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="resources"/>
 <%@ page session="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html lang="${sessionScope.lang}">
 <head>
@@ -46,6 +47,9 @@
         <div class="flex align-items-center">
             <form action="signIn" class="login_store"  method="post">
                 <input type="hidden" name="command" value="signIn"/>
+                <div>
+                    ${error}
+                </div>
                 <div class="enter">
                     Реєстрація
                 </div>
@@ -53,29 +57,22 @@
                     <input title="введіть ваше ім'я" placeholder="введіть ваше ім'я" class="input" name="name" required>
                 </div>
                 <div class="input_block">
-                    <input title="введіть ваше прізвище" placeholder="введіть ваше прізвище" class="input" name="surname">
+                    <input title="введіть ваше прізвище" placeholder="введіть ваше прізвище" class="input" name="surname" required>
                 </div>
 
                 <div class="input_block">
-                    <input title="введіть пошту" placeholder="введіть пошту" class="input" name="email">
+                    <input title="введіть пошту" placeholder="введіть пошту" class="input" name="email" required>
                 </div>
                 <div class="input_block">
-                    <input title="введіть номер телефону" placeholder="введіть номер телефону" class="input" name="phone_number">
+                    <input title="введіть номер телефону" placeholder="введіть номер телефону" class="input" name="phone_number" required>
                 </div>
                 <div class="input_block">
-                    <input title="введіть пароль" placeholder="введіть пароль" class="input" name="password">
+                    <input title="введіть пароль" placeholder="введіть пароль" class="input" name="password" required>
                 </div>
                 <button class="button_enter">
                     Зареєструватись
                 </button>
-
-
             </form>
-
-
-
-
-
         </div>
     </div>
 </main>

@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class SessionService {
+    private static final int COUNT_PLACE_HALL=84;
 
     public boolean deleteSession(int id){
         TicketDao.deleteTicketsBySession(id);
@@ -64,7 +65,7 @@ public class SessionService {
         List<Session> sessions = SessionDao.getAllSessionsSortCount();
         return parsingSessionInSessionDTO(sessions);
     }
-    public boolean createSession(String timestamp, String price, String film){
+    public boolean createSession(String timestamp, String price, String film) throws Exception {
         Session session = new Session();
         String dateTime = timestamp;
         System.out.println(dateTime);
@@ -76,30 +77,34 @@ public class SessionService {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        System.out.println(date);
+//        System.out.println(date);
         session.setTimestamp(Timestamp.valueOf(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date)));
         session.setPrice(Double.parseDouble(price));
         session.setFilm(FilmDao.getFilmById(Integer.parseInt(film)));
 
         if (Timestamp.valueOf(session.getTimestamp().toString().split(" ")[0]+" 09:00:00.0").compareTo(session.getTimestamp()) > 0 || Timestamp.valueOf(session.getTimestamp().toString().split(" ")[0]+" 22:00:00.0").compareTo(session.getTimestamp()) < 0){
-            System.out.println("error");
+            throw new Exception("error");
+
+//            System.out.println("error");
         }
         List<Session> session_today = SessionDao.getAllSessionsWhereDate(Timestamp.valueOf(session.getTimestamp().toString().split(" ")[0]+" 00:00:00.0"),Timestamp.valueOf(session.getTimestamp().toString().split(" ")[0]+" 23:59:00.0") );
-        System.out.println(session.getTimestamp().getTime());
-        System.out.println(session.getTimestamp().getTime()+session.getFilm().getDuration().getTime());
+//        System.out.println(session.getTimestamp().getTime());
+//        System.out.println(session.getTimestamp().getTime()+session.getFilm().getDuration().getTime());
 
         for (Session s: session_today){
             if (session.getTimestamp().getTime() < s.getTimestamp().getTime()+s.getFilm().getDuration().getTime() && session.getTimestamp().getTime() > s.getTimestamp().getTime()){
-                System.out.println("error1");
+                throw new Exception("error1");
+//                System.out.println("error1");
             }
             if (session.getTimestamp().getTime()<s.getTimestamp().getTime() && session.getTimestamp().getTime()+session.getFilm().getDuration().getTime() > s.getTimestamp().getTime()){
-                System.out.println("error2");
+                throw new Exception("error2");
+//                System.out.println("error2");
             }
 
         }
 
         Session session1 = SessionDao.insertSession(session);
-        for (int i=1; i<=84; i++) {
+        for (int i=1; i<=COUNT_PLACE_HALL; i++) {
             TicketDao.insertTicket(new Ticket(i, session1));
         }
         return true;

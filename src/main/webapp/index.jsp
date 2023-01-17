@@ -53,22 +53,20 @@
         <div class="flex align-items-center">
             <form action="account" class="login_store"  method="post">
                 <input type="hidden" name="command" value="login"/>
-                <% if (request.getAttribute("errorMessageLogin") != null ) {%>
                 <div>
-                    <%=request.getAttribute("errorMessageLogin") %>
+                    ${error}
                 </div>
-                <% } %>
                 <div class="enter">
                     Вхід
                 </div>
 
                 <div class="input_block">
-                    <input title="введіть пошту" class="input" name="email">
+                    <input title="введіть пошту" class="input" name="email" required>
                 </div>
 
 
                 <div class="input_block">
-                    <input title="введіть пароль" class="input" name="password" type="password" id="password">
+                    <input title="введіть пароль" class="input" name="password" type="password" id="password" required>
 
                 </div>
                 <label class="text_film" style="font-size: 20px"><input type="checkbox" title="показати пароль" id="see" onclick="testSee()">      показати пароль</label>

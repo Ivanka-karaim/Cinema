@@ -43,6 +43,7 @@
     <form action="add_session" method="post" class="login_store">
 
         <input type="hidden" name="command" value="add_session"/>
+        <div>${error}</div>
         <div class="input_block text_film" style="font-size: 15px">
             Виберіть дату
         <input title="time"  type="datetime-local" name="timestamp" class="input">

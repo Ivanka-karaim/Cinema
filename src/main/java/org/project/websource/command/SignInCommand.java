@@ -57,6 +57,20 @@ public class SignInCommand extends Command {
             userService.createUser(user);
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (Exception e){
+            String error=null;
+            if (e.getMessage().equals("emptyData")){
+                error = "emptyData";
+                System.out.println("emptyData");
+            } else if (e.getMessage().equals("errorPhoneNumber")){
+                error="errorPhoneNumber";
+                System.out.println("errorPhoneNumber");
+            }else if (e.getMessage().equals("errorEmail")){
+                error = "errorEmail";
+                System.out.println("errorEmail");
+            }
+            request.setAttribute("error", error);
+            return Path.PAGE__SIGN_IN;
         }
 
         session.setAttribute("user",user);

@@ -7,10 +7,13 @@ import org.apache.log4j.Logger;
 import org.project.db.dao.FilmDao;
 import org.project.db.dao.SessionDao;
 import org.project.db.dao.TicketDao;
+import org.project.db.dto.FilmDTO;
 import org.project.db.dto.SessionDTO;
+import org.project.db.entity.Film;
 import org.project.db.entity.Session;
 import org.project.db.entity.Ticket;
 import org.project.websource.Path;
+import org.project.websource.service.FilmService;
 import org.project.websource.service.SessionService;
 
 import java.io.IOException;
@@ -25,11 +28,31 @@ import java.util.Locale;
 public class AddSessionCommand extends Command{
     private static final Logger log = Logger.getLogger(SessionsCommand.class);
     private static final SessionService sessionService = new SessionService();
-
+    private static final FilmService filmService = new FilmService();
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         log.debug("Command starts");
-        sessionService.createSession(request.getParameter("timestamp"), request.getParameter("price"), request.getParameter("film"));
+        try {
+            sessionService.createSession(request.getParameter("timestamp"), request.getParameter("price"), request.getParameter("film"));
+        } catch (Exception e) {
+            String error=null;
+            if (e.getMessage().equals("error")){
+                error="errorRozklad";
+//                System.out.println("error");
+            }else if (e.getMessage().equals("error1")){
+                error = "errorTime";
+                System.out.println("error1");
+            }else if (e.getMessage().equals("error2")){
+                error = "errorTime";
+                System.out.println("error2");
+            }
+            List<FilmDTO> films = filmService.getAllFilms();
+
+            request.setAttribute("films", films);
+            request.setAttribute("error", error);
+            return Path.PAGE__ADD_SESSION;
+//            e.printStackTrace();
+        }
         List<SessionDTO> sessions = sessionService.getAllSessions();
         request.setAttribute("session", sessions);
 //        try {

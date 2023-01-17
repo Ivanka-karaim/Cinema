@@ -13,7 +13,7 @@ public class TicketService {
 
 
     public List<TicketDTO> getTicketsByUser(int id) {
-        List<Ticket> tickets = TicketDao.getTicketByUser(Objects.requireNonNull(UserDao.getUserById(id)));
+        List<Ticket> tickets = TicketDao.getTicketByUser(id);
         return parsingTicketInTicketDTO(tickets);
     }
     public boolean updateTicket(int id, int id_user){
