@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="resources"/>
 <%@ page session="true" %>
@@ -33,10 +34,10 @@
             <div class="logo">CiNeMa</div>
 
             <a href="sessions" class="login">
-                <div class="text_login">Сеанси</div>
+                <div class="text_login"><fmt:message key="header.sessions"/></div>
             </a>
             <a href="account" class="login">
-                <div class="text_login">Профіль</div>
+                <div class="text_login"><fmt:message key="header.account"/></div>
                 <div class="icon"><i class="fa-solid fa-user"></i></div>
             </a>
         </div>
@@ -51,26 +52,27 @@
                     ${error}
                 </div>
                 <div class="enter">
-                    Реєстрація
+                    <fmt:message key="registr"/>
                 </div>
                 <div class="input_block">
-                    <input title="введіть ваше ім'я" placeholder="введіть ваше ім'я" class="input" name="name" required>
+                    <input title=<fmt:message key="enter_name"/> placeholder="введіть ваше ім'я" class="input" name="name" required>
                 </div>
                 <div class="input_block">
-                    <input title="введіть ваше прізвище" placeholder="введіть ваше прізвище" class="input" name="surname" required>
+                    <input title="<fmt:message key="enter_surname"/>" placeholder="введіть ваше прізвище" class="input" name="surname" required>
                 </div>
 
                 <div class="input_block">
-                    <input title="введіть пошту" placeholder="введіть пошту" class="input" name="email" required>
+                    <input title="<fmt:message key="enter_email"/>" placeholder="введіть пошту" class="input" name="email" required>
                 </div>
                 <div class="input_block">
-                    <input title="введіть номер телефону" placeholder="введіть номер телефону" class="input" name="phone_number" required>
+                    <input title="<fmt:message key="enter_phone"/>" placeholder="введіть номер телефону" class="input" name="phone_number" required>
                 </div>
                 <div class="input_block">
-                    <input title="введіть пароль" placeholder="введіть пароль" class="input" name="password" required>
+                    <input title="<fmt:message key="enter_password"/>" placeholder="введіть пароль" class="input" name="password" required>
                 </div>
                 <button class="button_enter">
-                    Зареєструватись
+                    <fmt:message key="sign_up"/>
+
                 </button>
             </form>
         </div>

@@ -10,7 +10,7 @@
 
 
 
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isELIgnored="false" %>
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="resources"/>
@@ -39,10 +39,10 @@
 
             <div class="logo">CiNeMa</div>
             <a href="sessions" class="login">
-                <div class="text_login">Сеанси</div>
+                <div class="text_login"><fmt:message key="header.sessions"/></div>
             </a>
             <a href="account" class="login">
-                <div class="text_login">Профіль</div>
+                <div class="text_login"><fmt:message key="header.account"/></div>
                 <div class="icon"><i class="fa-solid fa-user"></i></div>
             </a>
         </div>
@@ -57,27 +57,27 @@
                     ${error}
                 </div>
                 <div class="enter">
-                    Вхід
+                    <fmt:message key="login.enter"/>
                 </div>
 
                 <div class="input_block">
-                    <input title="введіть пошту" class="input" name="email" required>
+                    <input title=<fmt:message key="enter_email"/> class="input" name="email" required>
                 </div>
 
 
                 <div class="input_block">
-                    <input title="введіть пароль" class="input" name="password" type="password" id="password" required>
+                    <input title=<fmt:message key="enter_password"/> class="input" name="password" type="password" id="password" required>
 
                 </div>
-                <label class="text_film" style="font-size: 20px"><input type="checkbox" title="показати пароль" id="see" onclick="testSee()">      показати пароль</label>
+                <label class="text_film" style="font-size: 20px"><input type="checkbox" title=<fmt:message key="see_password"/> id="see" onclick="testSee()">      <fmt:message key="see_password"/></label>
                 <button class="button_enter">
-                    Увійти
+                    <fmt:message key="sign_in"/>
                 </button>
                 <a href='signIn.jsp' class="registr">
-                    Зареєструватись
+                    <fmt:message key="sign_up"/>
                 </a>
                 <a href="sessions" class="registr">
-                    Увійти як гість
+                    <fmt:message key="guest"/>
                 </a>
             </form>
 

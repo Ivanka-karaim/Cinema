@@ -8,10 +8,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page session="true" %>
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="resources"/>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page session="true" %>
 <html lang="${sessionScope.lang}">
 
 <head>
@@ -35,10 +37,10 @@
 
             <div class="logo">CiNeMa</div>
             <a href="sessions" class="login">
-                <div class="text_login">Сеанси</div>
+                <div class="text_login"><fmt:message key="header.sessions"/></div>
             </a>
             <a href="account" class="login">
-                <div class="text_login">Профіль</div>
+                <div class="text_login"><fmt:message key="header.account"/></div>
                 <div class="icon"><i class="fa-solid fa-user"></i></div>
             </a>
         </div>
@@ -50,18 +52,18 @@
 
             <a href="sessions?command=sessions&sort=name" style="text-decoration-line: none; ">
                 <div class="button_enter flex" style=" width:100%; padding: 0 60px; font-size: 20px">
-                Сортувати за ім'ям
+                    <fmt:message key="sort.a_z"/>
                 </div>
             </a>
 
             <a href="sessions?command=sessions" style="text-decoration-line: none; ">
                 <div class="button_enter flex" style=" width:100%; padding: 0 60px; font-size: 20px">
-                Сортувати за датою
+                    <fmt:message key="sort.date"/>
                 </div>
             </a>
             <a href="sessions?command=sessions&sort=countPlace" style="text-decoration-line: none; ">
                 <div class="button_enter flex" style=" width:100%; padding: 0 60px; font-size: 20px">
-                Сортувати за кількістю доступних місць
+                    <fmt:message key="sort.count"/>
                 </div>
             </a>
         </div>
@@ -76,7 +78,7 @@
                         </c:forEach>
                     </select>
 
-                <button class="button_enter" style="width: 30%">Фільтрувати</button>
+                <button class="button_enter" style="width: 30%"> <fmt:message key="filter"/></button>
                 </div>
             </form>
         </div>
@@ -95,7 +97,7 @@
 
                             </div>
                             <div class="text_session">
-                                    ${session1.price} грн
+                                    ${session1.price}
 
                             </div>
                         </div>
