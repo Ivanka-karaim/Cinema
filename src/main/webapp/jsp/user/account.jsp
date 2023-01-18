@@ -13,6 +13,7 @@
 <fmt:setBundle basename="resources"/>
 <%@ page session="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "custom" uri = "/WEB-INF/customTag.tld"%>
 <html lang="${sessionScope.lang}">
 <head>
     <meta charset="UTF-8">
@@ -45,6 +46,9 @@
 </header>
 <main>
     <div class="container">
+        <div class="text_login">
+            <custom:Hello message="Hello, ${user.name}" />
+        </div>
         <table class="table">
             <thead>
             <tr><th class="text_film" style="font-size: 20px"><fmt:message key="film.name"/></th><th class="text_film" style="font-size: 20px"><fmt:message key="session.price"/></th><th class="text_film" style="font-size: 20px"><fmt:message key="session.date"/></th><th class="text_film" style="font-size: 20px"><fmt:message key="session.place"/></th><th></th></tr></thead>
