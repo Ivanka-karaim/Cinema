@@ -5,11 +5,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
-import org.project.db.dao.UserDao;
-import org.project.db.dto.UserDTO;
-import org.project.db.entity.User;
+import org.project.dto.UserDTO;
 import org.project.websource.Path;
-import org.project.websource.service.UserService;
+import org.project.service.UserService;
 
 import java.io.IOException;
 import java.sql.SQLException;

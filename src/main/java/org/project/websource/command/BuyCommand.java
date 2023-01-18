@@ -4,13 +4,10 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.project.db.dao.TicketDao;
-import org.project.db.dto.TicketDTO;
-import org.project.db.dto.UserDTO;
-import org.project.db.entity.Ticket;
-import org.project.db.entity.User;
+import org.project.dto.TicketDTO;
+import org.project.dto.UserDTO;
 import org.project.websource.Path;
-import org.project.websource.service.TicketService;
+import org.project.service.TicketService;
 
 import java.io.IOException;
 import java.text.ParseException;

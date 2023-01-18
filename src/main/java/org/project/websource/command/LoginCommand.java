@@ -5,19 +5,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
-import org.project.db.dao.TicketDao;
-import org.project.db.dao.UserDao;
-import org.project.db.dto.TicketDTO;
-import org.project.db.dto.UserDTO;
-import org.project.db.entity.Ticket;
-import org.project.db.entity.User;
+import org.project.dto.TicketDTO;
+import org.project.dto.UserDTO;
 import org.project.websource.Path;
-import org.project.websource.command.Command;
-import org.project.websource.service.TicketService;
-import org.project.websource.service.UserService;
+import org.project.service.TicketService;
+import org.project.service.UserService;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,13 +31,13 @@ public class LoginCommand extends Command {
 
         log.trace("Found in DB: user --> " + user);
         if (user == null) {
-            String errorMessage = "Не знайдено користувача з такою поштою!!!";
+            String errorMessage = "error_user_email";
             request.setAttribute("error", errorMessage);
             log.error("errorMessage --> " + errorMessage);
             return Path.PAGE__WELCOME;
         }
         else if (!password.equals(user.getPassword())) {
-            String errorMessage = "Неправильний пароль";
+            String errorMessage = "error_user_password";
             request.setAttribute("error", errorMessage);
             log.error("errorMessage --> " + errorMessage);
             return Path.PAGE__WELCOME;

@@ -5,12 +5,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
-import org.project.db.dto.FilmDTO;
-import org.project.db.dto.SessionDTO;
+import org.project.dto.FilmDTO;
+import org.project.dto.SessionDTO;
 
 import org.project.websource.Path;
-import org.project.websource.service.FilmService;
-import org.project.websource.service.SessionService;
+import org.project.service.FilmService;
+import org.project.service.SessionService;
 
 import java.io.IOException;
 

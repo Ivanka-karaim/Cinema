@@ -1,9 +1,4 @@
-package org.project.db.dto;
-
-import org.project.db.entity.Genre;
-
-import java.sql.Time;
-import java.util.List;
+package org.project.dto;
 
 public class FilmDTO {
     public int id;

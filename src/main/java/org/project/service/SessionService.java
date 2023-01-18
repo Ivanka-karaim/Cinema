@@ -1,10 +1,9 @@
-package org.project.websource.service;
+package org.project.service;
 
 import org.project.db.dao.FilmDao;
 import org.project.db.dao.SessionDao;
 import org.project.db.dao.TicketDao;
-import org.project.db.dto.SessionDTO;
-import org.project.db.dto.TicketDTO;
+import org.project.dto.SessionDTO;
 import org.project.db.entity.Session;
 import org.project.db.entity.Ticket;
 

@@ -5,11 +5,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import org.project.db.dto.TicketDTO;
-import org.project.db.dto.UserDTO;
+import org.project.dto.TicketDTO;
+import org.project.dto.UserDTO;
 
 import org.project.websource.Path;
-import org.project.websource.service.TicketService;
+import org.project.service.TicketService;
 
 import java.io.IOException;
 import java.text.ParseException;

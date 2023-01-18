@@ -4,13 +4,9 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
-import org.project.db.dao.SessionDao;
-import org.project.db.dao.TicketDao;
-import org.project.db.dto.SessionDTO;
-import org.project.db.entity.Session;
+import org.project.dto.SessionDTO;
 import org.project.websource.Path;
-import org.project.websource.service.SessionService;
-import org.project.websource.service.TicketService;
+import org.project.service.SessionService;
 
 import java.io.IOException;
 import java.util.List;

@@ -18,7 +18,7 @@ public class SessionDao {
     private static final String ADD_SESSION = "INSERT INTO session (timestamp, price, film_id) values (?, ?, ?);";
     private static final String DELETE_SESSION = "DELETE FROM session WHERE id=?";
     private static final String GET_SESSION_ID = "SELECT * FROM session WHERE id=?";
-    private static final String ALL_SESSION_SORT_NAME = "SELECT * FROM session, films WHERE session.timestamp > now() and session.film_id= films.id ORDER BY films.name ASC";
+    private static final String ALL_SESSION_SORT_NAME = "SELECT * FROM session, films WHERE session.timestamp > now() and session.film_id= films.id ORDER BY films.name, session.timestamp ASC";
     private static final String ALL_SESSION_SORT_COUNT= "SELECT * FROM session, tickets WHERE tickets.session_id= session.id and session.timestamp> now() GROUP BY tickets.session_id ORDER BY COUNT(tickets.user_id) ASC";
 
     public static List<Session> getSessionsByFilm(int film_id){
@@ -148,7 +148,9 @@ public class SessionDao {
         List<Session> sessions = new ArrayList<>();
         try (Connection conn = DBManager.getInstance().getConnectionWithDriverManager();
              PreparedStatement stmt = conn.prepareStatement(ALL_SESSION_DATE)) {
+
             stmt.setTimestamp(1, timestamp1);
+
             stmt.setTimestamp(2, timestamp2);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){

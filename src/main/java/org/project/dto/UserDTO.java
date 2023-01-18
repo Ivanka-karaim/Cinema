@@ -1,4 +1,4 @@
-package org.project.db.dto;
+package org.project.dto;
 
 
 

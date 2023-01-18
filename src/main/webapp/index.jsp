@@ -15,9 +15,7 @@
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="resources"/>
 <%@ page session="true" %>
-
-
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html lang="${sessionScope.lang}">
 <head>
@@ -53,9 +51,12 @@
         <div class="flex align-items-center">
             <form action="account" class="login_store"  method="post">
                 <input type="hidden" name="command" value="login"/>
+                <c:if test="${error!=null}">
                 <div>
-                    ${error}
+                    <fmt:message key="${error}"/>
+
                 </div>
+                </c:if>
                 <div class="enter">
                     <fmt:message key="login.enter"/>
                 </div>

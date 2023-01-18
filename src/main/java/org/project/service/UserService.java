@@ -1,12 +1,9 @@
-package org.project.websource.service;
+package org.project.service;
 
 import org.project.db.dao.UserDao;
-import org.project.db.dto.FilmDTO;
-import org.project.db.dto.UserDTO;
-import org.project.db.entity.Film;
+import org.project.dto.UserDTO;
 import org.project.db.entity.User;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 

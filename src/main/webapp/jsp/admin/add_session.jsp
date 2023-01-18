@@ -44,7 +44,9 @@
     <form action="add_session" method="post" class="login_store">
 
         <input type="hidden" name="command" value="add_session"/>
-        <div>${error}</div>
+        <c:if test="${error != null}">
+        <div><fmt:message key="${error}"/></div>
+        </c:if>
         <div class="input_block text_film" style="font-size: 15px">
             <fmt:message key="new_session.date"/>
         <input title="time"  type="datetime-local" name="timestamp" class="input">

@@ -1,6 +1,5 @@
-package org.project.db.dto;
+package org.project.dto;
 
-import org.project.db.entity.Session;
 import org.project.db.entity.User;
 
 import java.sql.Timestamp;

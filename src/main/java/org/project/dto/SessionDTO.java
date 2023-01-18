@@ -1,6 +1,4 @@
-package org.project.db.dto;
-
-import org.project.db.entity.Film;
+package org.project.dto;
 
 import java.sql.Time;
 import java.sql.Timestamp;

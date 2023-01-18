@@ -21,11 +21,12 @@ public class UserDao {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             DBManager.getInstance().rollbackAndClose(conn);
+            return null;
 
         } finally {
             DBManager.getInstance().commitAndClose(conn);
         }
-        return null;
+
 
     }
     public static User addUser(User user, Connection connection) throws SQLException {
@@ -53,7 +54,7 @@ public class UserDao {
         return user;
 
     }
-    public boolean deleteUsers(User user)  {
+    public static boolean deleteUsers(User user)  {
         Connection conn = null;
 
         try {
@@ -97,7 +98,7 @@ public class UserDao {
 
     }
 
-    public static User getUserById(int id){
+    public static User getUserById(int id) throws SQLException{
         try (Connection conn = DBManager.getInstance().getConnectionWithDriverManager();
              PreparedStatement stmt = conn.prepareStatement(USER)) {
             stmt.setInt(1, id);
@@ -115,6 +116,7 @@ public class UserDao {
             return user;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+
         }
         return null;
     }

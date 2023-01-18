@@ -48,9 +48,12 @@
         <div class="flex align-items-center">
             <form action="signIn" class="login_store"  method="post">
                 <input type="hidden" name="command" value="signIn"/>
-                <div>
-                    ${error}
-                </div>
+                <c:if test="${error!=null}">
+                    <div>
+                        <fmt:message key="${error}"/>
+
+                    </div>
+                </c:if>
                 <div class="enter">
                     <fmt:message key="registr"/>
                 </div>
