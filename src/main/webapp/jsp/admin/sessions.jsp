@@ -8,6 +8,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="resources"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -35,7 +36,7 @@
 
             <div class="logo">CiNeMa</div>
             <a href="account" class="login">
-                <div class="text_login">Профіль</div>
+                <div class="text_login"><fmt:message key="header.account"/></div>
                 <div class="icon"><i class="fa-solid fa-user"></i></div>
             </a>
         </div>
@@ -45,7 +46,7 @@
     <div class="container">
     <table class="table table-hover mt-2">
         <thead>
-        <tr><th class="text_film" style="font-size: 20px">Назва Фільму</th><th class="text_film" style="font-size: 20px">Ціна</th><th class="text_film" style="font-size: 20px">Дата</th><th></th><th></th></tr></thead>
+        <tr><th class="text_film" style="font-size: 20px"><fmt:message key="film.name"/></th><th class="text_film" style="font-size: 20px"><fmt:message key="session.price"/></th><th class="text_film" style="font-size: 20px"><fmt:message key="session.date"/></th><th></th><th></th></tr></thead>
 
 
         <c:forEach var="session" items="${session}">
@@ -56,10 +57,10 @@
                 <td class="text_film" style="font-size: 20px"> ${session.timestamp}</td>
 
                 <td> <button class="button_enter" style="font-size: 25px; width:100%" onclick="location.href='sessions?command=delete_session&id=${session.id}'">
-                    Видалити
+                    <fmt:message key="delete"/>
                 </button></td>
                 <td> <button class="button_enter" style="font-size: 20px; line-height: 30px!important;  width:100%" onclick="location.href='sessions?command=session&id=${session.id}'">
-                    Перевірити кількість місць
+                    <fmt:message key="check_count_free_place"/>
                 </button></td>
 
             </tr>
@@ -68,48 +69,16 @@
     </table>
     <form action="edit_sessions" method="get">
         <input type="hidden" name="command" value="add_session_form"/>
-        <button class="button_enter" style="margin-top: 30px">Додати сеанс</button>
+        <button class="button_enter" style="margin-top: 30px"><fmt:message key="admin.add_new_session"/></button>
     </form>
-<%--    <div class="container">--%>
-<%--        <div class="row">--%>
-
-<%--                <div class="session">--%>
-<%--                    <c:forEach  items="${session}" var="session1">--%>
-<%--                        <a href="" class="a_session">--%>
-<%--                            <img class="photo" src="">--%>
-<%--                            <div class="text_session_block">--%>
-<%--                                <div class="text_session">--%>
-<%--                                        ${session1.film.name}--%>
-<%--                                    Незвичайний світ--%>
-<%--                                </div>--%>
-<%--                                <div class="text_session">--%>
-<%--                                        ${session1.price} грн--%>
-<%--                                    200 грн--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                            <div class="text_session_block">--%>
-<%--                                <div class="text_session">--%>
-<%--                                        ${session1.timestamp}--%>
-<%--                                    30 листопада--%>
-<%--                                </div>--%>
-<%--                                <div class="text_session underline">--%>
-<%--                                    19:40--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </a>--%>
-<%--                    </c:forEach>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--            <div class="col-md-4">--%>
-
-<%--            </div>--%>
-<%--            <div class="col-md-4">--%>
-
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
     </div>
 </main>
+<footer>
+    <ul style="display: flex; justify-content: center" class="header">
+        <li><a class="text_film" style="font-size: 20px; padding:30px; margin:20px" href="account?sessionLocale=en"><fmt:message key="english" /></a></li>
+        <li><a class="text_film" style="font-size: 20px; padding:30px; margin:20px" href="account?sessionLocale=uk"><fmt:message key="ukrainian" /></a></li>
+    </ul>
+</footer>
 <script src="https://kit.fontawesome.com/1467b92032.js" crossorigin="anonymous"></script>
 </body>
 </html>

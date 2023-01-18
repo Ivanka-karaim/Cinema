@@ -78,6 +78,13 @@
         </div>
     </div>
 </main>
+<div style="height: 80px"></div>
+<footer>
+    <ul style="display: flex; justify-content: center" class="header">
+        <li><a class="text_film" style="font-size: 20px; padding:30px; margin:20px" href="account?sessionLocale=en"><fmt:message key="english" /></a></li>
+        <li><a class="text_film" style="font-size: 20px; padding:30px; margin:20px" href="account?sessionLocale=uk"><fmt:message key="ukrainian" /></a></li>
+    </ul>
+</footer>
 <script src="https://kit.fontawesome.com/1467b92032.js" crossorigin="anonymous" ></script>
 
 </body>

@@ -7,10 +7,7 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-
-
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isELIgnored="false" %>
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="resources"/>
@@ -35,7 +32,7 @@
 
             <div class="logo">CiNeMa</div>
             <a href="account" class="login">
-                <div class="text_login">Профіль</div>
+                <div class="text_login"><fmt:message key="header.account"/></div>
                 <div class="icon"><i class="fa-solid fa-user"></i></div>
             </a>
         </div>
@@ -46,18 +43,24 @@
         <form action="sessions" method="get">
             <input type="hidden" name="command" value="edit_sessions"/>
             <div class="flex align-items-center " style="margin-left: 25%;margin-bottom: 50px">
-            <button class="button_enter">Редагувати сеанси</button>
+            <button class="button_enter"><fmt:message key="admin.edit_sessions"/></button>
             </div>
         </form>
     <form action="" method="post" >
         <input type="hidden" name="command" value="logout"/>
         <div class="flex align-items-center " style="margin-left: 25%;">
-        <button class="button_enter ">Вийти</button>
+        <button class="button_enter "><fmt:message key="account.logout"/></button>
         </div>
     </form>
 
     </div>
 </main>
+<footer>
+    <ul style="display: flex; justify-content: center" class="header">
+        <li><a class="text_film" style="font-size: 20px; padding:30px; margin:20px" href="account?sessionLocale=en"><fmt:message key="english" /></a></li>
+        <li><a class="text_film" style="font-size: 20px; padding:30px; margin:20px" href="account?sessionLocale=uk"><fmt:message key="ukrainian" /></a></li>
+    </ul>
+</footer>
 
 </body>
 </html>

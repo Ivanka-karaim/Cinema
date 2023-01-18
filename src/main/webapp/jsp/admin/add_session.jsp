@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isELIgnored="false" %>
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="resources"/>
@@ -31,7 +32,7 @@
 
             <div class="logo">CiNeMa</div>
             <a href="account" class="login">
-                <div class="text_login">Профіль</div>
+                <div class="text_login"><fmt:message key="header.account"/></div>
                 <div class="icon"><i class="fa-solid fa-user"></i></div>
             </a>
         </div>
@@ -45,27 +46,33 @@
         <input type="hidden" name="command" value="add_session"/>
         <div>${error}</div>
         <div class="input_block text_film" style="font-size: 15px">
-            Виберіть дату
+            <fmt:message key="new_session.date"/>
         <input title="time"  type="datetime-local" name="timestamp" class="input">
         </div>
         <div class="input_block text_film" style="font-size: 15px">
-            Введіть ціну
+            <fmt:message key="new_session.price"/>
         <input title="price" type="text" name="price" class="input">
         </div>
         <div class="input_block text_film" style="font-size: 15px">
-            Виберіть фільм
+            <fmt:message key="new_session.film"/>
         <select title="film" name="film"  class="input">
                 <c:forEach var="film" items="${films}" >
                     <option value="${film.id}">${film.name}</option>
                 </c:forEach>
             </select>
         </div>
-        <button class="button_enter">Зберегти</button>
+        <button class="button_enter"><fmt:message key="new_session.search"/></button>
 
     </form>
         </div>
     </div>
 </main>
 
+<footer>
+    <ul style="display: flex; justify-content: center" class="header">
+        <li><a class="text_film" style="font-size: 20px; padding:30px; margin:20px" href="account?sessionLocale=en"><fmt:message key="english" /></a></li>
+        <li><a class="text_film" style="font-size: 20px; padding:30px; margin:20px" href="account?sessionLocale=uk"><fmt:message key="ukrainian" /></a></li>
+    </ul>
+</footer>
 </body>
 </html>

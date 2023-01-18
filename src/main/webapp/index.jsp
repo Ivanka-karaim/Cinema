@@ -83,7 +83,15 @@
 
         </div>
     </div>
+    <div style="height: 80px; "></div>
 </main>
+
+<footer>
+    <ul style="display: flex; justify-content: center" class="header">
+        <li><a class="text_film" style="font-size: 20px; padding:30px; margin:20px" href="account?sessionLocale=en"><fmt:message key="english" /></a></li>
+        <li><a class="text_film" style="font-size: 20px; padding:30px; margin:20px" href="account?sessionLocale=uk"><fmt:message key="ukrainian" /></a></li>
+    </ul>
+</footer>
 <script>
     function testSee() {
         var chbox = document.getElementById('see');

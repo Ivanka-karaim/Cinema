@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isELIgnored="false" %>
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="resources"/>
@@ -35,10 +36,10 @@
             <div class="logo">CiNeMa</div>
 
             <a href="sessions" class="login">
-                <div class="text_login">Сеанси</div>
+                <div class="text_login"><fmt:message key="header.sessions"/></div>
             </a>
             <a href="account" class="login">
-                <div class="text_login">Профіль</div>
+                <div class="text_login"><fmt:message key="header.account"/></div>
                 <div class="icon"><i class="fa-solid fa-user"></i></div>
             </a>
         </div>
@@ -59,16 +60,16 @@
                         ${session.description}
                     </p>
                     <div class="text_film">
-                        Автор: ${session.author}
+                        <fmt:message key="session.author"/>: ${session.author}
                     </div>
                     <div class="text_film">
-                        Рік:${session.year}
+                        <fmt:message key="session.year"/>:${session.year}
                     </div>
                     <div class="text_film">
-                        Країна: ${session.country}
+                        <fmt:message key="session.country"/>: ${session.country}
                     </div>
                     <div class="text_price">
-                        Ціна:${session.price}грн
+                        <fmt:message key="session.price"/>:${session.price}грн
                     </div>
                     <div class="text_session_block">
                         <div class="text_session">
@@ -105,107 +106,16 @@
                         </div>
                     </c:if>
                 </c:forEach>
-<%--                <div class="col-md-1">--%>
-<%--                    <div class="place_free">--%>
-
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                <div class="col-md-1">--%>
-<%--                    <div class="place_free">--%>
-
-<%--                    </div>--%>
-<%--                </div><div class="col-md-1">--%>
-<%--                <div class="place_free">--%>
-
-<%--                </div>--%>
-<%--            </div><div class="col-md-1">--%>
-<%--                <div class="place_free">--%>
-
-<%--                </div>--%>
-<%--            </div><div class="col-md-1">--%>
-<%--                <div class="place_free">--%>
-
-<%--                </div>--%>
-<%--            </div><div class="col-md-1">--%>
-<%--                <div class="place_free">--%>
-
-<%--                </div>--%>
-<%--            </div><div class="col-md-1">--%>
-<%--                <div class="place_free">--%>
-
-<%--                </div>--%>
-<%--            </div><div class="col-md-1">--%>
-<%--                <div class="place_free">--%>
-
-<%--                </div>--%>
-<%--            </div><div class="col-md-1">--%>
-<%--                <div class="place_free">--%>
-
-<%--                </div>--%>
-<%--            </div><div class="col-md-1">--%>
-<%--                <div class="place_free">--%>
-
-<%--                </div>--%>
-<%--            </div><div class="col-md-1">--%>
-<%--                <div class="place_free">--%>
-
-<%--                </div>--%>
-<%--            </div><div class="col-md-1">--%>
-<%--                <div class="place_free">--%>
-
-<%--                </div>--%>
-<%--            </div><div class="col-md-1">--%>
-<%--                <div class="place_free">--%>
-
-<%--                </div>--%>
-<%--            </div><div class="col-md-1">--%>
-<%--                <div class="place_free">--%>
-
-<%--                </div>--%>
-<%--            </div><div class="col-md-1">--%>
-<%--                <div class="place_free">--%>
-
-<%--                </div>--%>
-<%--            </div><div class="col-md-1">--%>
-<%--                <div class="place_free">--%>
-
-<%--                </div>--%>
-<%--            </div><div class="col-md-1">--%>
-<%--                <div class="place_free">--%>
-
-<%--                </div>--%>
-<%--            </div><div class="col-md-1">--%>
-<%--                <div class="place_free">--%>
-
-<%--                </div>--%>
-<%--            </div><div class="col-md-1">--%>
-<%--                <div class="place_notfree">--%>
-
-<%--                </div>--%>
-<%--            </div>--%>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </div>
         </div>
     </div>
 </main>
+<footer>
+    <ul style="display: flex; justify-content: center" class="header">
+        <li><a class="text_film" style="font-size: 20px; padding:30px; margin:20px" href="account?sessionLocale=en"><fmt:message key="english" /></a></li>
+        <li><a class="text_film" style="font-size: 20px; padding:30px; margin:20px" href="account?sessionLocale=uk"><fmt:message key="ukrainian" /></a></li>
+    </ul>
+</footer>
 <script src="https://kit.fontawesome.com/1467b92032.js" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -7,10 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-
-
-
 <%@ page isELIgnored="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="resources"/>
 <%@ page session="true" %>
@@ -35,13 +33,12 @@
 
             <div class="logo">CiNeMa</div>
             <a href="sessions" class="login">
-                <div class="text_login">Сеанси</div>
+                <div class="text_login"><fmt:message key="header.sessions"/></div>
             </a>
             <a href="account" class="login">
-                <div class="text_login">Профіль</div>
+                <div class="text_login"><fmt:message key="header.account"/></div>
                 <div class="icon"><i class="fa-solid fa-user"></i></div>
             </a>
-
 
         </div>
     </div>
@@ -50,7 +47,7 @@
     <div class="container">
         <table class="table">
             <thead>
-            <tr><th class="text_film" style="font-size: 20px">Назва Фільму</th><th class="text_film" style="font-size: 20px">Ціна</th><th class="text_film" style="font-size: 20px">Дата</th><th class="text_film" style="font-size: 20px">Місце</th><th></th></tr></thead>
+            <tr><th class="text_film" style="font-size: 20px"><fmt:message key="film.name"/></th><th class="text_film" style="font-size: 20px"><fmt:message key="session.price"/></th><th class="text_film" style="font-size: 20px"><fmt:message key="session.date"/></th><th class="text_film" style="font-size: 20px"><fmt:message key="session.place"/></th><th></th></tr></thead>
             <c:forEach items="${tickets}" var="ticket">
              <tr>
                  <td class="text_film" style="font-size: 20px">${ticket.film_name}</td>
@@ -65,10 +62,16 @@
     <form action="" method="post" >
         <input type="hidden" name="command" value="logout"/>
         <div class="flex align-items-center " style="margin-left: 25%;">
-            <button class="button_enter ">Вийти</button>
+            <button class="button_enter "><fmt:message key="account.logout"/></button>
         </div>
     </form>
 </main>
+<footer>
+    <ul style="display: flex; justify-content: center" class="header">
+        <li><a class="text_film" style="font-size: 20px; padding:30px; margin:20px" href="account?sessionLocale=en"><fmt:message key="english" /></a></li>
+        <li><a class="text_film" style="font-size: 20px; padding:30px; margin:20px" href="account?sessionLocale=uk"><fmt:message key="ukrainian" /></a></li>
+    </ul>
+</footer>
 
 </body>
 </html>
