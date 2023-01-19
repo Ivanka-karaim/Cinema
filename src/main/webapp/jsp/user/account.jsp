@@ -47,7 +47,7 @@
 <main>
     <div class="container">
         <div class="text_login">
-<%--            <custom:Hello message="Hello, ${user.name}" />--%>
+            <custom:hello message="Hello" />
         </div>
         <table class="table">
             <thead>

@@ -16,6 +16,8 @@
 <fmt:setBundle basename="resources"/>
 <%@ page session="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "custom" uri = "/WEB-INF/customTag.tld" %>
+
 
 <html lang="${sessionScope.lang}">
 <head>
@@ -57,6 +59,8 @@
 
                 </div>
                 </c:if>
+
+
                 <div class="enter">
                     <fmt:message key="login.enter"/>
                 </div>

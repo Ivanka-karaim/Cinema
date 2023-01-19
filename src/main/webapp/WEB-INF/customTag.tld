@@ -1,15 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE taglib
+        PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
+        "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
 <taglib>
-    <tlib-version>1.0</tlib-version>
-    <jsp-version>3.1.0</jsp-version>
-    <short-name>Text Tag</short-name>
+    <tlibversion>1.0</tlibversion>
+    <jspversion>1.1</jspversion>
+    <shortname>TextTag</shortname>
+
     <tag>
-    <name>Hello</name>
-    <tag-class>org.project.websource.TextTag</tag-class>
-    <body-content>scriptless</body-content>
-
-    <attribute>
-        <name>message</name>
-    </attribute>
-
-</tag>
+        <name>hello</name>
+        <tagclass>org.project.websource.TextTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        
+        <attribute>
+            <name>message</name>
+        </attribute>
+    </tag>
 </taglib>
+
