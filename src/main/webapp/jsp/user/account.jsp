@@ -14,6 +14,7 @@
 <%@ page session="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "custom" uri = "/WEB-INF/customTag.tld"%>
+<%@taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <html lang="${sessionScope.lang}">
 <head>
     <meta charset="UTF-8">
@@ -28,22 +29,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Mulish:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Oswald:wght@300;400;500&family=Rubik&display=swap" rel="stylesheet">
 
 <body>
-<header>
-    <div class="container">
-        <div class="header">
-
-            <div class="logo">CiNeMa</div>
-            <a href="sessions" class="login">
-                <div class="text_login"><fmt:message key="header.sessions"/></div>
-            </a>
-            <a href="account" class="login">
-                <div class="text_login"><fmt:message key="header.account"/></div>
-                <div class="icon"><i class="fa-solid fa-user"></i></div>
-            </a>
-
-        </div>
-    </div>
-</header>
+<tags:head admin="false"/>
 <main>
     <div class="container">
         <div class="text_login">

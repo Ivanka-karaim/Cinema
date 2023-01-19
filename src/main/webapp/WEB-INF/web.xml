@@ -67,19 +67,8 @@
     <url-pattern>/account</url-pattern>
   </servlet-mapping>
 
-  <filter>
-    <filter-name>AuthenticationFilter</filter-name>
-    <filter-class>org.project.websource.filter.AuthenticationFilter</filter-class>
-    <init-param>
-      <param-name>active</param-name>
-      <param-value>true</param-value>
-    </init-param>
-  </filter>
 
-  <filter-mapping>
-    <filter-name>AuthenticationFilter</filter-name>
-    <url-pattern>/cart</url-pattern>
-  </filter-mapping>
+
   <filter>
     <filter-name>SessionLocaleFilter</filter-name>
     <filter-class>org.project.websource.filter.SessionLocaleFilter</filter-class>

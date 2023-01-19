@@ -37,7 +37,6 @@ public class DBManager {
 
     public void commitAndClose(Connection con) {
         try {
-
             con.commit();
             con.close();
         } catch (SQLException ex) {
@@ -47,7 +46,6 @@ public class DBManager {
 
     public void rollbackAndClose(Connection con ) {
         try {
-
             Connection connection = DBManager.getInstance().getConnectionWithDriverManager();
             connection.rollback();
             connection.close();

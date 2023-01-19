@@ -20,18 +20,19 @@ public class FrontController extends HttpServlet {
 //
 //    }
     private static final Logger log = Logger.getLogger(FrontController.class);
+
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response) throws ServletException, IOException {
         String forward = process(request, response);
         RequestDispatcher disp = request.getRequestDispatcher(forward);
+        System.out.println("get");
         disp.forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
         String forward = process(request, response);
-        System.out.println(forward);
-        System.out.println(request.getRequestURL());
+        System.out.println("post");
 
         response.sendRedirect(forward);
     }

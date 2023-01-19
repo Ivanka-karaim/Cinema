@@ -12,6 +12,7 @@
 <fmt:setBundle basename="resources"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page session="true" %>
+<%@taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <html lang="${sessionScope.lang}">
 <head>
     <meta charset="UTF-8">
@@ -26,18 +27,7 @@
 
 </head>
 <body>
-<header>
-    <div class="container">
-        <div class="header">
-
-            <div class="logo">CiNeMa</div>
-            <a href="account" class="login">
-                <div class="text_login"><fmt:message key="header.account"/></div>
-                <div class="icon"><i class="fa-solid fa-user"></i></div>
-            </a>
-        </div>
-    </div>
-</header>
+<tags:head admin="true"/>
 <main>
     <div class="container">
         <div class="flex align-items-center">

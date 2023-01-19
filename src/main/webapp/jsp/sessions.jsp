@@ -14,6 +14,7 @@
 <%@ page session="true" %>
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="resources"/>
+<%@taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <html lang="${sessionScope.lang}">
 
 <head>
@@ -31,21 +32,7 @@
 
 
 <body>
-<header>
-    <div class="container">
-        <div class="header">
-
-            <div class="logo">CiNeMa</div>
-            <a href="sessions" class="login">
-                <div class="text_login"><fmt:message key="header.sessions"/></div>
-            </a>
-            <a href="account" class="login">
-                <div class="text_login"><fmt:message key="header.account"/></div>
-                <div class="icon"><i class="fa-solid fa-user"></i></div>
-            </a>
-        </div>
-    </div>
-</header>
+<tags:head admin="false"/>
 <main>
     <div class="container">
         <div class="header">

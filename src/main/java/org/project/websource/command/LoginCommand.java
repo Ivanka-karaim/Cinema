@@ -27,7 +27,6 @@ public class LoginCommand extends Command {
 
         String password = request.getParameter("password");
         UserDTO user = userService.getUserByEmail(login);
-        System.out.println(user);
 
         log.trace("Found in DB: user --> " + user);
         if (user == null) {
@@ -42,18 +41,14 @@ public class LoginCommand extends Command {
             request.setAttribute("error", errorMessage);
             log.error("errorMessage --> " + errorMessage);
             return "index.jsp";
-//            return Path.PAGE__WELCOME;
+
         }
         else {
             String role = user.getRole();
             log.trace("userRole --> " + role);
-            if (Objects.equals(role, "admin")) {
-                forward = Path.PAGE__ACCOUNT_ADMIN;
-            }else {
-//                List<Ticket> tickets = TicketDao.getTicketByUser(user);
+            if (!Objects.equals(role, "admin")) {
                 List<TicketDTO> tickets = ticketService.getTicketsByUser(user.getId());
                 request.setAttribute("tickets", tickets);
-                forward = Path.PAGE__ACCOUNT_USER;
             }
             sessionHttp.setAttribute("user", user);
             log.trace("Set the session attribute: user --> " + user);
