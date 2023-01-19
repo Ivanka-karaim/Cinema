@@ -30,7 +30,7 @@
 <tags:head admin="true"/>
 <main>
     <div class="container">
-        <form action="sessions" method="get">
+        <form action="edit_sessions" method="get">
             <input type="hidden" name="command" value="edit_sessions"/>
             <div class="flex align-items-center " style="margin-left: 25%;margin-bottom: 50px">
             <button class="button_enter"><fmt:message key="admin.edit_sessions"/></button>

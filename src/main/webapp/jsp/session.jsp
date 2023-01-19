@@ -73,7 +73,9 @@
         <div class="places">
             <div class="row">
                 <c:forEach items="${tickets}" var="ticket">
-                    <c:if test="${ticket.user==false}" >
+                    <c:choose>
+<%--                    <c:if test="${ticket.user==false}" >--%>
+                        <c:when test="${ticket.user==false}">
                 <div class="col-md-1">
                     <div class="place_free_a">
 <%--                    <a href="sessions?command=buy&id=${ticket.id}" class="place_free_a">--%>
@@ -88,14 +90,18 @@
                     </div>
                     </div>
                 </div>
-                </c:if>
-                    <c:if test="${ticket.user}" >
+                        </c:when>
+<%--                </c:if>--%>
+                        <c:otherwise>
+<%--                    <c:if test="${ticket.user}" >--%>
                         <div class="col-md-1">
                             <div class="place_notfree">
                                     ${ticket.place}
                             </div>
                         </div>
-                    </c:if>
+<%--                    </c:if>--%>
+                        </c:otherwise>
+                    </c:choose>
                 </c:forEach>
             </div>
         </div>
@@ -108,17 +114,33 @@
                 <c:choose>
                     <c:when test="${user.id==null}">
 
-                        <div>Ви ще не зареєстровані</div>
+                        <div class="text_film" style=" color: black">Ви ще не зареєстровані</div>
+                        <form action="account" method="get">
+                        <button class="button_enter">
+                            <fmt:message key="sign_in"/>
+                        </button>
+                        </form>
+
                     </c:when>
                     <c:otherwise>
                 <form action="account" method="post">
                     <input type="hidden" name="command" value="buy"/>
+                    <div id="label1"> Місце:
+                        <div id="label"></div>
+                    </div>
                     <input type="hidden" name="place"  id="place"/>
-                    <input name="number_cart" style="width:100%"/>
+                    <label><fmt:message key="enter_card_number"/></label>
+                    <input name="number_cart" style="width:80%; text-align: center"/>
+                    <div style="display: flex; justify-content: space-between; margin: 0 70px" >
+                        <label><fmt:message key="enter_date"/></label>
+                        <label><fmt:message key="enter_cvv"/></label>
+                    </div>
+                    <div style="display: flex">
                     <input name="date" style="width:30%"/>
-                    <input name="cvv" style="width: 30%"/>
-                    <button >
-                        Купити
+                    <input type="password" name="cvv" style="width: 30%"/>
+                    </div>
+                    <button class="button_enter">
+                        <fmt:message key="buy"/>
                     </button>
 
 
@@ -150,6 +172,7 @@
         popUp.classList.add('active');
         number_ticket = num;
         document.getElementById('place').value=num;
+        document.getElementById('label1').innerText+=place;
 
     }
 

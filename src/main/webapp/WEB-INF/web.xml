@@ -87,6 +87,10 @@
     <filter-name>utf8filter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  <listener>
+    <listener-class>org.project.websource.listener.ContextListener</listener-class>
+  </listener>
+
 </web-app>
 
 

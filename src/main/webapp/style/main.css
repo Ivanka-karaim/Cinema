@@ -391,20 +391,7 @@ li{
 .pop_up_body input:focus {
   outline: none;
 }
-.pop_up_body button {
-  margin-top: 30px;
-  cursor: pointer;
-  width: 50%;
-  height: 70px;
-  background-color: #1E7DB2;
-  border: none;
-  font-family: 'Oswald', sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 50px;
-  color: #ffffff;
-}
+
 
 .close {
   cursor: pointer;
