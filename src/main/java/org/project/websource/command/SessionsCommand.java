@@ -59,6 +59,7 @@ public class SessionsCommand extends Command{
         }
 
         request.setAttribute("nOfPages", nOfPages);
+        request.setAttribute("currentPage", currentPage);
         request.setAttribute("session", sessions);
         List<FilmDTO> films = filmService.getAllFilms();
         request.setAttribute("films", films);

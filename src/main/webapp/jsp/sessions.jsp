@@ -38,18 +38,18 @@
         <div class="header">
 
             <a href="sessions?command=sessions&sort=name" style="text-decoration-line: none; ">
-                <div class="button_enter flex" style=" width:100%; padding: 0 60px; font-size: 20px">
+                <div class="button_enter flex" style=" width:100%; padding: 5px 60px; font-size: 20px; line-height: 30px">
                     <fmt:message key="sort.a_z"/>
                 </div>
             </a>
 
             <a href="sessions?command=sessions" style="text-decoration-line: none; ">
-                <div class="button_enter flex" style=" width:100%; padding: 0 60px; font-size: 20px">
+                <div class="button_enter flex" style=" width:100%; padding: 5px 60px; font-size: 20px; line-height: 30px">
                     <fmt:message key="sort.date"/>
                 </div>
             </a>
             <a href="sessions?command=sessions&sort=countPlace" style="text-decoration-line: none; ">
-                <div class="button_enter flex" style=" width:100%; padding: 0 60px; font-size: 20px">
+                <div class="button_enter flex" style=" width:100%; padding: 5px 60px; font-size: 20px; line-height: 30px">
                     <fmt:message key="sort.count"/>
                 </div>
             </a>
@@ -105,8 +105,18 @@
             <nav aria-label="Page navigation example">
                 <ul class="flex justify-content-center pagination">
                     <c:forEach items="${nOfPages}" var="number">
+                        <c:choose>
+                        <c:when test="${currentPage==number}">
                     <li class="page-items">
-                        <button class=" page-link text_film" style="line-height: 30px" onclick="current(${number})">${number}</button></li>
+                        <button class="page-link-no text_film" style="line-height: 30px" >${number}</button>
+                    </li>
+                        </c:when>
+                            <c:otherwise>
+                        <li class="page-items">
+                            <button class="page-link text_film" style="line-height: 30px" onclick="current(${number})">${number}</button>
+                        </li>
+                            </c:otherwise>
+                        </c:choose>
                     </c:forEach>
 <%--                        <li class="page-item"><a class="page-link" href="publicationView?command=publication&recordsPerPage=5&currentPage=2">2</a></li>--%>
 <%--                    <li class="page-item"><a class="page-link" href="publicationView?command=publication&recordsPerPage=5&currentPage=3">3</a></li>--%>
