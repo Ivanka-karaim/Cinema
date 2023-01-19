@@ -30,8 +30,10 @@ public class AddSessionCommand extends Command{
             String error = "errorPrice";
             List<FilmDTO> films = filmService.getAllFilms();
             request.setAttribute("films", films);
-            request.setAttribute("error", error);
-            return Path.PAGE__ADD_SESSION;
+            
+            request.getSession().setAttribute("error", error);
+            return "edit_sessions?command=add_session_form";
+//            return Path.PAGE__ADD_SESSION;
         }catch (Exception e) {
             String error=null;
             if (e.getMessage().equals("error")){
@@ -46,13 +48,16 @@ public class AddSessionCommand extends Command{
             }
             List<FilmDTO> films = filmService.getAllFilms();
             request.setAttribute("films", films);
-            request.setAttribute("error", error);
-            return Path.PAGE__ADD_SESSION;
+//            request.setAttribute("error", error);
+            request.getSession().setAttribute("error", error);
+            return "edit_sessions?command=add_session_form";
+//            return Path.PAGE__ADD_SESSION;
 
         }
         List<SessionDTO> sessions = sessionService.getAllSessions();
         request.setAttribute("session", sessions);
-        return Path.PAGE__LIST_MENU_ADMIN;
+        request.getSession().removeAttribute("error");
+        return "sessions?command=edit_sessions";
 
     }
 }

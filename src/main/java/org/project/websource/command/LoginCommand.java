@@ -34,13 +34,15 @@ public class LoginCommand extends Command {
             String errorMessage = "error_user_email";
             request.setAttribute("error", errorMessage);
             log.error("errorMessage --> " + errorMessage);
-            return Path.PAGE__WELCOME;
+            return "index.jsp";
+//            return Path.PAGE__WELCOME;
         }
         else if (!password.equals(user.getPassword())) {
             String errorMessage = "error_user_password";
             request.setAttribute("error", errorMessage);
             log.error("errorMessage --> " + errorMessage);
-            return Path.PAGE__WELCOME;
+            return "index.jsp";
+//            return Path.PAGE__WELCOME;
         }
         else {
             String role = user.getRole();
@@ -60,7 +62,7 @@ public class LoginCommand extends Command {
             log.info("User " + user + " logged as " + role.toLowerCase());
         }
         log.debug("Command finished");
-        return forward;
+        return request.getRequestURL().toString();
     }
 }
 

@@ -22,16 +22,22 @@ public class FrontController extends HttpServlet {
     private static final Logger log = Logger.getLogger(FrontController.class);
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response) throws ServletException, IOException {
-        process(request, response);
+        String forward = process(request, response);
+        RequestDispatcher disp = request.getRequestDispatcher(forward);
+        disp.forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
-        process(request, response);
+        String forward = process(request, response);
+        System.out.println(forward);
+        System.out.println(request.getRequestURL());
+
+        response.sendRedirect(forward);
     }
 
 
-    private void process(HttpServletRequest request,
+    private String process(HttpServletRequest request,
                          HttpServletResponse response) throws IOException, ServletException {
 
         log.debug("Controller starts");
@@ -64,9 +70,9 @@ public class FrontController extends HttpServlet {
         log.debug("Controller finished, now go to forward address --> " + forward);
 
         if (forward != null) {
-            RequestDispatcher disp = request.getRequestDispatcher(forward);
-            disp.forward(request, response);
+            return forward;
         }
+        return null;
     }
 }
 

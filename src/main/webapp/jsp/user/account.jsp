@@ -19,8 +19,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cinema</title>
-    <link rel="stylesheet" href="style/main.css">
-    <link rel="stylesheet" href="bootstrap/bootstrap-grid.min.css">
+    <link rel="stylesheet"  href="./style/main.css">
+    <link rel="stylesheet" href="./bootstrap/bootstrap-grid.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&display=swap" rel="stylesheet"></head>
@@ -47,7 +47,7 @@
 <main>
     <div class="container">
         <div class="text_login">
-            <custom:Hello message="Hello, ${user.name}" />
+<%--            <custom:Hello message="Hello, ${user.name}" />--%>
         </div>
         <table class="table">
             <thead>
@@ -63,7 +63,7 @@
         </table>
 
     </div>
-    <form action="" method="post" >
+    <form action="" method="get" >
         <input type="hidden" name="command" value="logout"/>
         <div class="flex align-items-center " style="margin-left: 25%;">
             <button class="button_enter "><fmt:message key="account.logout"/></button>

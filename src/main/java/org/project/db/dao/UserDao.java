@@ -4,12 +4,16 @@ import org.project.db.DBManager;
 import org.project.db.entity.User;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDao {
     private static final String ADD_USER = "INSERT INTO users (name, surname, date_birth, phone_number, email, password, role) values (?, ?, ?, ?, ?, ?, ?);";
     private static final String DELETE_USER = "DELETE FROM users WHERE id=?";
     private static final String LOGIN = "SELECT * FROM users WHERE email = ?";
     private static final String USER = "SELECT * FROM users WHERE id = ?";
+
+    private static final String ALL_USER = "SELECT * FROM users";
 
     public static User insertUser(User user) throws SQLException {
         Connection conn = null;
@@ -95,6 +99,34 @@ public class UserDao {
             System.out.println(543);
             return null;
         }
+
+    }
+    public static List<User> getAllUsers(){
+        List<User> users = new ArrayList<>();
+        try (Connection conn = DBManager.getInstance().getConnectionWithDriverManager();
+             PreparedStatement stmt = conn.prepareStatement(ALL_USER)) {
+            ResultSet rs = stmt.executeQuery();
+
+
+            while(rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("id"));
+                user.setName(rs.getString("name"));
+                user.setSurname(rs.getString("surname"));
+                user.setDate_birth(rs.getDate("date_birth"));
+                user.setPhone_number(rs.getString("phone_number"));
+                user.setEmail(rs.getString("email"));
+                user.setPassword(rs.getString("password"));
+                user.setRole(rs.getString("role"));
+                users.add(user);
+            }
+
+        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+            System.out.println(543);
+            return null;
+        }
+        return users;
 
     }
 

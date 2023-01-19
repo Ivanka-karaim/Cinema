@@ -28,6 +28,8 @@ public class UserService {
     }
 
     public UserDTO createUser(UserDTO userDTO) throws Exception {
+        List<User> usersList = UserDao.getAllUsers();
+        System.out.println(usersList);
         if ( userDTO.password == null || userDTO.email == null  || userDTO.password.isEmpty() || userDTO.email.isEmpty()) {
             throw new Exception("emptyData");
         }
@@ -44,6 +46,14 @@ public class UserService {
 //            request.setAttribute("errorMessage", errorMessage);
 //            log.error("errorMessage --> " + errorMessage);
 //            return forward;
+        }
+        assert usersList != null;
+        for (User user:usersList) {
+            if (user.getEmail().equals(userDTO.getEmail())){
+                System.out.println(user.getEmail());
+                System.out.println(userDTO.getEmail());
+                throw new Exception("errorEmailUser");
+            }
         }
         User user = new User();
         user.setId(userDTO.id);

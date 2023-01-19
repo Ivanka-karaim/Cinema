@@ -46,7 +46,7 @@
 <main>
     <div class="container">
         <div class="flex align-items-center">
-            <form action="signIn" class="login_store"  method="post">
+            <form action="account" class="login_store"  method="post">
                 <input type="hidden" name="command" value="signIn"/>
                 <c:if test="${error!=null}">
                     <div>

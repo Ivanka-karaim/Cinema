@@ -46,7 +46,7 @@
             <button class="button_enter"><fmt:message key="admin.edit_sessions"/></button>
             </div>
         </form>
-    <form action="" method="post" >
+    <form action="" method="get" >
         <input type="hidden" name="command" value="logout"/>
         <div class="flex align-items-center " style="margin-left: 25%;">
         <button class="button_enter "><fmt:message key="account.logout"/></button>
