@@ -20,17 +20,20 @@ public class BuyCommand extends Command{
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
         log.debug("Command starts");
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("place"));
+
         HttpSession sessionHttp = request.getSession();
         log.trace("Session parameter: userRole --> " + sessionHttp.getAttribute("userRole"));
         if (sessionHttp.getAttribute("userRole")!= null) {
             UserDTO user = (UserDTO) sessionHttp.getAttribute("user");
+            System.out.println(id);
+            System.out.println(user.getId());
             ticketService.updateTicket(id, user.getId());
             List<TicketDTO> tickets = ticketService.getTicketsByUser(user.getId());
             request.setAttribute("tickets", tickets);
         }
         log.debug("Command finished");
 
-        return Path.PAGE__ACCOUNT_USER;
+        return request.getRequestURL().toString();
     }
 }

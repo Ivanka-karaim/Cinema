@@ -76,11 +76,16 @@
                     <c:if test="${ticket.user==false}" >
                 <div class="col-md-1">
                     <div class="place_free_a">
-                    <a href="sessions?command=buy&id=${ticket.id}" class="place_free_a">
+<%--                    <a href="sessions?command=buy&id=${ticket.id}" class="place_free_a">--%>
+<%--                        <div class="place_free">--%>
+<%--                        ${ticket.place}--%>
+<%--                        </div>--%>
+<%--                    </a>--%>
+                    <div onclick="buy(${ticket.id},${ticket.place})"  class="place_free_a">
                         <div class="place_free">
                         ${ticket.place}
                         </div>
-                    </a>
+                    </div>
                     </div>
                 </div>
                 </c:if>
@@ -96,6 +101,36 @@
         </div>
     </div>
 </main>
+<div class="pop_up" id="pop_up">
+    <div class="pop_up_container">
+        <div class="pop_up_body" id="pop_up_body">
+            <div style="display:flex; flex-direction: column; align-items:center;">
+                <c:choose>
+                    <c:when test="${user.id==null}">
+
+                        <div>Ви ще не зареєстровані</div>
+                    </c:when>
+                    <c:otherwise>
+                <form action="account" method="post">
+                    <input type="hidden" name="command" value="buy"/>
+                    <input type="hidden" name="place"  id="place"/>
+                    <input name="number_cart" style="width:100%"/>
+                    <input name="date" style="width:30%"/>
+                    <input name="cvv" style="width: 30%"/>
+                    <button >
+                        Купити
+                    </button>
+
+
+                </form>
+                    </c:otherwise>
+                </c:choose>
+                <div class="pop_up_close" id="pop_up_close" onclick="closePop('pop_up')">&#10006
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <footer>
     <ul style="display: flex; justify-content: center" class="header">
         <li><a class="text_film" style="font-size: 20px; padding:30px; margin:20px" href="account?sessionLocale=en"><fmt:message key="english" /></a></li>
@@ -103,6 +138,27 @@
     </ul>
 </footer>
 <script src="https://kit.fontawesome.com/1467b92032.js" crossorigin="anonymous"></script>
+<script >
+    var number_ticket = 0;
+
+    function getTicket(){
+        return number_ticket;
+    }
+
+    function buy(num, place) {
+        const popUp = document.getElementById('pop_up');
+        popUp.classList.add('active');
+        number_ticket = num;
+        document.getElementById('place').value=num;
+
+    }
+
+    function closePop(name){
+        const popUp = document.getElementById(name);
+        popUp.classList.remove('active');
+    }
+
+</script>
 </body>
 </html>
 

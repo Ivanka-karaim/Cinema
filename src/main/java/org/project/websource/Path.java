@@ -19,5 +19,6 @@ public final class Path {
 
     public static final String PAGE__EDIT_SESSIONS = "edit_sessions?command=add_session_form";
     public static final String PAGE__ALL_SESSIONS_ADMIN="sessions?command=edit_sessions";
+    public static final String PAGE__ACCOUNT="account";
 
 }
