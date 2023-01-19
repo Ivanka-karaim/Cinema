@@ -17,32 +17,34 @@ public class SignInCommand extends Command {
     private static final UserService userService = new UserService();
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        String errorMessage;
+
         HttpSession session = request.getSession();
         String forward = Path.PAGE__ERROR_PAGE;
         UserDTO user =new UserDTO(0, request.getParameter("name"),request.getParameter("surname"),  request.getParameter("email"), "user", request.getParameter("password"),request.getParameter("phone_number"));
         try {
             userService.createUser(user);
+
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e){
             String error=null;
             if (e.getMessage().equals("emptyData")){
                 error = "emptyData";
-                System.out.println("emptyData");
+
             } else if (e.getMessage().equals("errorPhoneNumber")){
                 error="errorPhoneNumber";
-                System.out.println("errorPhoneNumber");
+
             }else if (e.getMessage().equals("errorEmail")){
                 error = "errorEmail";
-                System.out.println("errorEmail");
+
             } else if(e.getMessage().equals("errorEmailUser")){
                 error = "errorEmailUser";
             }
             session.setAttribute("error", error);
-            request.setAttribute("error", error);
-            return "signIn.jsp";
-//            return Path.PAGE__SIGN_IN;
+            log.error("errorMessage ---> "+error);
+//            request.setAttribute("error", error);
+//            return "signIn.jsp";
+            return Path.PAGE__SIGN_IN;
         }
 
         session.setAttribute("user",user);

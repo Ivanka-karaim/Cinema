@@ -62,6 +62,9 @@
                     <fmt:message key="sign_up"/>
 
                 </button>
+                <a href='account' class="registr">
+                    <fmt:message key="already_registered"/>
+                </a>
             </form>
         </div>
     </div>

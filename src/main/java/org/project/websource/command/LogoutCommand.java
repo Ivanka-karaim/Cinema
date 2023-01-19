@@ -21,6 +21,7 @@ public class LogoutCommand extends Command {
             session.removeAttribute("user");
             session.removeAttribute("userRole");
 
+
         log.debug("Command finished");
         return Path.PAGE__WELCOME;
     }

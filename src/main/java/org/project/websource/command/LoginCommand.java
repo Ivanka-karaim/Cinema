@@ -21,9 +21,11 @@ public class LoginCommand extends Command {
     private static final UserService userService = new UserService();
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        log.debug("Command starts");
         HttpSession sessionHttp = request.getSession();
         String forward;
         String login = request.getParameter("email");
+        log.trace("Request parameter: email --> " + login);
 
         String password = request.getParameter("password");
         UserDTO user = userService.getUserByEmail(login);
@@ -31,16 +33,20 @@ public class LoginCommand extends Command {
         log.trace("Found in DB: user --> " + user);
         if (user == null) {
             String errorMessage = "error_user_email";
-            request.setAttribute("error", errorMessage);
+//            request.setAttribute("error", errorMessage);
+            sessionHttp.setAttribute("error", errorMessage);
+
             log.error("errorMessage --> " + errorMessage);
-            return "index.jsp";
-//            return Path.PAGE__WELCOME;
+            return Path.PAGE__WELCOME;
+
         }
         else if (!password.equals(user.getPassword())) {
             String errorMessage = "error_user_password";
-            request.setAttribute("error", errorMessage);
+//            request.setAttribute("error", errorMessage);
+            sessionHttp.setAttribute("error", errorMessage);
             log.error("errorMessage --> " + errorMessage);
-            return "index.jsp";
+            return Path.PAGE__WELCOME;
+
 
         }
         else {
@@ -50,6 +56,7 @@ public class LoginCommand extends Command {
                 List<TicketDTO> tickets = ticketService.getTicketsByUser(user.getId());
                 request.setAttribute("tickets", tickets);
             }
+            sessionHttp.removeAttribute("error");
             sessionHttp.setAttribute("user", user);
             log.trace("Set the session attribute: user --> " + user);
             sessionHttp.setAttribute("userRole", role);

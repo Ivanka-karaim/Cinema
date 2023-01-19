@@ -23,7 +23,6 @@ import java.util.Objects;
 
 public class SessionsCommand extends Command{
     private static final Logger log = Logger.getLogger(SessionsCommand.class);
-    private static final TicketService ticketService = new TicketService();
     private static final SessionService sessionService = new SessionService();
     private static final FilmService filmService = new FilmService();
 
@@ -37,7 +36,7 @@ public class SessionsCommand extends Command{
             currentPage = Integer.parseInt(request.getParameter("currentPage"));
         }
         else currentPage=1;
-
+        log.trace("Current Page --->"+currentPage);
         if (Objects.equals(request.getParameter("sort"), "name")){
             sessions = sessionService.getAllSessionsSortName(currentPage);
         }else if (Objects.equals(request.getParameter("sort"), "countPlace")){
@@ -50,7 +49,6 @@ public class SessionsCommand extends Command{
             SimpleDateFormat formatter = new SimpleDateFormat ("dd MMM, HH:mm");
             String dateString = formatter.format(s.getTimestamp());
             s.timestamp_string = dateString;
-
         }
         int countAll = sessionService.getAllSessions().size();
         int nOfPage = countAll/12 + 1;

@@ -25,15 +25,12 @@ public class FrontController extends HttpServlet {
                          HttpServletResponse response) throws ServletException, IOException {
         String forward = process(request, response);
         RequestDispatcher disp = request.getRequestDispatcher(forward);
-        System.out.println("get");
         disp.forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
         String forward = process(request, response);
-        System.out.println("post");
-
         response.sendRedirect(forward);
     }
 
@@ -44,22 +41,17 @@ public class FrontController extends HttpServlet {
         log.debug("Controller starts");
 
         String commandName = "";
-        // extract command name from the request
         if (request.getParameter("command") == null) {
             commandName = request.getRequestURL().toString().split("/")[4];
         } else {
             commandName = request.getParameter("command");
         }
-        System.out.println(commandName);
-//        System.out.println(commandName);
         log.trace("Request parameter: command --> " + commandName);
 
-        
-        // obtain command object by its name
+
         Command command = CommandSource.get(commandName);
         log.trace("Obtained command --> " + command);
 
-        // execute command and get forward address
         String forward = null;
         try {
             forward = command.execute(request, response);
@@ -70,10 +62,7 @@ public class FrontController extends HttpServlet {
 
         log.debug("Controller finished, now go to forward address --> " + forward);
 
-        if (forward != null) {
-            return forward;
-        }
-        return null;
+        return forward;
     }
 }
 

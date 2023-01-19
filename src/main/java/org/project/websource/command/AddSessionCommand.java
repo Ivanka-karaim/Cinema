@@ -18,7 +18,7 @@ import java.util.List;
 
 
 public class AddSessionCommand extends Command{
-    private static final Logger log = Logger.getLogger(SessionsCommand.class);
+    private static final Logger log = Logger.getLogger(AddSessionCommand.class);
     private static final SessionService sessionService = new SessionService();
     private static final FilmService filmService = new FilmService();
     @Override
@@ -30,34 +30,33 @@ public class AddSessionCommand extends Command{
             String error = "errorPrice";
             List<FilmDTO> films = filmService.getAllFilms();
             request.setAttribute("films", films);
-            
+            log.error("errorMessage --> " + error);
             request.getSession().setAttribute("error", error);
-            return "edit_sessions?command=add_session_form";
-//            return Path.PAGE__ADD_SESSION;
+            log.trace("Set the session attribute: error--> " + error);
+            return Path.PAGE__EDIT_SESSIONS;
         }catch (Exception e) {
             String error=null;
             if (e.getMessage().equals("error")){
                 error="errorRozklad";
-//                System.out.println("error");
             }else if (e.getMessage().equals("error1")){
                 error = "errorTime";
-//                System.out.println("error1");
             }else if (e.getMessage().equals("error2")){
                 error = "errorTime";
-//                System.out.println("error2");
+
             }
-            List<FilmDTO> films = filmService.getAllFilms();
-            request.setAttribute("films", films);
-//            request.setAttribute("error", error);
+//            List<FilmDTO> films = filmService.getAllFilms();
+//            request.setAttribute("films", films);
+            log.error("errorMessage --> " + error);
             request.getSession().setAttribute("error", error);
-            return "edit_sessions?command=add_session_form";
-//            return Path.PAGE__ADD_SESSION;
+            log.trace("Set the session attribute: error--> " + error);
+            return Path.PAGE__EDIT_SESSIONS;
 
         }
         List<SessionDTO> sessions = sessionService.getAllSessions();
         request.setAttribute("session", sessions);
         request.getSession().removeAttribute("error");
-        return "sessions?command=edit_sessions";
+        log.debug("Command finished");
+        return Path.PAGE__ALL_SESSIONS_ADMIN;
 
     }
 }
