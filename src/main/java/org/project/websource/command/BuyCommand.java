@@ -24,10 +24,21 @@ public class BuyCommand extends Command{
 
         HttpSession sessionHttp = request.getSession();
         log.trace("Session parameter: userRole --> " + sessionHttp.getAttribute("userRole"));
+
+        String number_cart = request.getParameter("number_cart");
+        String date = request.getParameter("date");
+        String cvv = request.getParameter("cvv");
+        if (!number_cart.matches("(\\d{4}([-]|)\\d{4}([-]|)\\d{4}([-]|)\\d{4})") || !date.matches("^\\d{2}/\\d{2}$") || !cvv.matches("\\d{3}")){
+            System.out.println(number_cart);
+            System.out.println(!number_cart.matches("(\\d{4}([-]|)\\d{4}([-]|)\\d{4}([-]|)\\d{4})"));
+            System.out.println(!date.matches("^\\d{2}+/\\d{2}$"));
+            System.out.println(!cvv.matches("^\\d{3}$"));
+            request.getSession().setAttribute("error", "Wrong bank card");
+            return "error";
+        }
+
         if (sessionHttp.getAttribute("userRole")!= null) {
             UserDTO user = (UserDTO) sessionHttp.getAttribute("user");
-            System.out.println(id);
-            System.out.println(user.getId());
             ticketService.updateTicket(id, user.getId());
             List<TicketDTO> tickets = ticketService.getTicketsByUser(user.getId());
             request.setAttribute("tickets", tickets);

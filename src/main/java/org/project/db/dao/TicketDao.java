@@ -15,7 +15,7 @@ public class TicketDao {
     private static final String ADD_SESSION = "INSERT INTO tickets (place, session_id) values (?, ?);";
     private static final String GET_TICKETS_SESSION = "SELECT * FROM tickets WHERE session_id=?";
     private static final String TICKET = "SELECT * FROM tickets WHERE id=?";
-    private static final String TICKET_USER = "SELECT * FROM tickets WHERE user_id=?";
+    private static final String TICKET_USER = "SELECT * FROM tickets, session WHERE tickets.user_id=? and tickets.session_id=session.id ORDER BY session.timestamp";
 
     public static List<Ticket> getTicketByUser(int id){
         List<Ticket> tickets = new ArrayList<>();

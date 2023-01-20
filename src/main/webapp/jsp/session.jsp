@@ -115,8 +115,8 @@
                     <c:when test="${user.id==null}">
 
                         <div class="text_film" style=" color: black">Ви ще не зареєстровані</div>
-                        <form action="account" method="get">
-                        <button class="button_enter">
+                        <form action="account" method="get" style="width: 100%">
+                        <button class="button_enter" style="width: 80%">
                             <fmt:message key="sign_in"/>
                         </button>
                         </form>
@@ -139,7 +139,7 @@
                     <input name="date" style="width:30%"/>
                     <input type="password" name="cvv" style="width: 30%"/>
                     </div>
-                    <button class="button_enter">
+                    <button class="button_enter" >
                         <fmt:message key="buy"/>
                     </button>
 

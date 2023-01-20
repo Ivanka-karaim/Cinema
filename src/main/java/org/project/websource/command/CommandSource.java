@@ -21,19 +21,11 @@ public class CommandSource {
         commands.put("add_session", new AddSessionCommand());
         commands.put("add_session_form", new AddSessionFormCommand());
         commands.put("filter", new FilterCommand());
-//        commands.put("publicationView", new PublicationViewCommand());
-//        commands.put("search", new SearchCommand());
-//        commands.put("cart", new CartCommand());
-//        commands.put("deleteItem", new DeleteItemFromCartCommand());
+
         commands.put("account", new AccountCommand());
         commands.put("logout", new LogoutCommand());
         commands.put("buy", new BuyCommand());
-//        commands.put("deleteSubscribe", new DeleteSubscribeFromAccount());
-//        commands.put("viewAccounts", new ViewAccountsCommand());
-//        commands.put("blockUser", new BlockCommand());
-//        commands.put("unblockUser", new UnblockCommand());
-//        commands.put("sortByTopic", new SortByTopicCommand());
-//        commands.put("sortByParam", new SelectByParamCommand());
+        commands.put("error", new ErrorCommand());
 
 
         log.debug("Command container was successfully initialized");
