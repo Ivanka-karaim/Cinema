@@ -39,6 +39,10 @@ public class BuyCommand extends Command{
 
         if (sessionHttp.getAttribute("userRole")!= null) {
             UserDTO user = (UserDTO) sessionHttp.getAttribute("user");
+            if (ticketService.getTicketById(id).isUser()){
+                request.getSession().setAttribute("error", "This ticket is not free");
+                return "error";
+            }
             ticketService.updateTicket(id, user.getId());
             List<TicketDTO> tickets = ticketService.getTicketsByUser(user.getId());
             request.setAttribute("tickets", tickets);

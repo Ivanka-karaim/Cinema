@@ -6,6 +6,7 @@ import org.project.db.entity.Film;
 
 import java.util.List;
 import static org.junit.Assert.assertEquals;
+
 public class FilmDaoTest {
 
     @Test
