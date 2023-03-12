@@ -7,7 +7,6 @@ import jakarta.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.project.dto.TicketDTO;
 import org.project.dto.UserDTO;
-import org.project.websource.Path;
 import org.project.service.TicketService;
 
 import java.io.IOException;

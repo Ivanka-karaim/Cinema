@@ -1,7 +1,6 @@
 package org.project.service;
 
 import org.project.db.dao.TicketDao;
-import org.project.db.entity.Session;
 import org.project.dto.TicketDTO;
 import org.project.db.entity.Ticket;
 

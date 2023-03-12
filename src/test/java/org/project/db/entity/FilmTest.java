@@ -1,49 +1,39 @@
 package org.project.db.entity;
 
-import org.junit.Before;
+
 //import org.junit.Test;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+
+import java.sql.Time;
+
 import static org.junit.Assert.*;
 
 public class FilmTest {
+    Film film;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
+        film = new Film();
     }
+
 
     @Test
-    public void getName() {
+    void testFilmEntity() {
+
+        assertNotNull(film);
+        film.setName("Один вдома");
+        film.setAuthor("Кріс Коламбус");
+        film.setYear(1998);
+        film.setDuration(new Time(1,30,0));
+
+
+        assertEquals("Один вдома", film.getName());
+        assertEquals("Кріс Коламбус", film.getAuthor());
+        assertEquals(1998, film.getYear());
+        assertEquals("01:30:00", film.getDuration().toString());
     }
 
-    @Test
-    public void getAuthor() {
-    }
 
-    @org.junit.jupiter.api.Test
-    void testGetName() {
-        Film film = new Film();
-        film.setName("q435");
-        film.getName();
-        assertTrue(true);
-    }
 
-    @org.junit.jupiter.api.Test
-    void testGetAuthor() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void getCountry() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void getYear() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void getDescription() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void getPhoto() {
-    }
 }

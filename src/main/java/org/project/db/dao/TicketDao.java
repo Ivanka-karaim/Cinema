@@ -1,9 +1,7 @@
 package org.project.db.dao;
 
 import org.project.db.DBManager;
-import org.project.db.entity.Session;
 import org.project.db.entity.Ticket;
-import org.project.db.entity.User;
 
 import java.sql.*;
 import java.util.ArrayList;
