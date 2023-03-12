@@ -6,15 +6,29 @@ import org.project.db.entity.User;
 
 import java.util.ArrayList;
 import java.util.List;
+/**
 
+ This class provides functionality related to the user management system.
+ */
 public class UserService {
+    /**
 
+     Returns a UserDTO object by its email.
+     @param email the email of the user to be retrieved
+     @return a UserDTO object representing the user with the given email
+     */
     public UserDTO getUserByEmail(String email){
         User user = UserDao.getUserByEmail(email);
         List<User> users = new ArrayList<>();
         users.add(user);
         return parsingUserInUserDTO(users).get(0);
     }
+    /**
+
+     Converts a list of User objects to a list of UserDTO objects.
+     @param list a list of User objects to be converted
+     @return a list of UserDTO objects representing the input list of User objects
+     */
     private List<UserDTO> parsingUserInUserDTO(List<User> list) {
         List<UserDTO> userDTOs = new ArrayList<>();
         for (User user : list) {
@@ -26,7 +40,13 @@ public class UserService {
         }
         return userDTOs;
     }
+    /**
 
+     Creates a new user with the provided information.
+     @param userDTO a UserDTO object containing the information of the user to be created
+     @return a UserDTO object representing the created user
+     @throws Exception if the provided user data is invalid or the user with the given email already exists
+     */
     public UserDTO createUser(UserDTO userDTO) throws Exception {
         List<User> usersList = UserDao.getAllUsers();
         System.out.println(usersList);

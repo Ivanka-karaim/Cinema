@@ -36,8 +36,5 @@ public class AccountCommand extends Command {
         } else{
             return Path.PAGE__ACCOUNT_ADMIN;
         }
-
-
-
     }
 }

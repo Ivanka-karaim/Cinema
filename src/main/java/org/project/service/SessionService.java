@@ -17,26 +17,59 @@ import java.util.List;
 import java.util.Locale;
 
 public class SessionService {
-    private static final int COUNT_PLACE_HALL=84;
+    /**
 
+    The total number of places in the hall
+    */
+    private static final int COUNT_PLACE_HALL=84;
+    /**
+
+     Deletes a session with the specified id
+     @param id the id of the session to be deleted
+     @return true if the session was successfully deleted, false otherwise
+     */
     public boolean deleteSession(int id){
         TicketDao.deleteTicketsBySession(id);
         return SessionDao.deleteSession(id);
     }
+    /**
+
+     Returns a list of all sessions
+     @return a list of all sessions in the form of SessionDTO objects
+     */
     public List<SessionDTO> getAllSessions(){
         List<Session> sessions = SessionDao.getAllSessions();
         return parsingSessionInSessionDTO(sessions);
 
     }
+    /**
+
+     Returns a list of sessions for pagination
+     @param currentPage the current page of sessions to retrieve
+     @return a list of sessions in the form of SessionDTO objects
+     */
+
     public List<SessionDTO> getAllSessionsForPagination(int currentPage){
         int start = currentPage * 12 - 12;
         List<Session> sessions1 = SessionDao.getAllSessionsForPagination(start, 12);
         return parsingSessionInSessionDTO(sessions1);
     }
+    /**
+
+     Returns a list of sessions for a specific film
+     @param id the id of the film
+     @return a list of sessions for the film in the form of SessionDTO objects
+     */
     public List<SessionDTO> getSessionsByFilm(int id){
         List<Session> sessions = SessionDao.getSessionsByFilm(id);
         return parsingSessionInSessionDTO(sessions);
     }
+    /**
+
+     Returns a specific session with the specified id
+     @param id the id of the session
+     @return the session in the form of a SessionDTO object
+     */
 
     public SessionDTO  getSessionById(int id){
         Session session = SessionDao.getSessionByID(id);
@@ -44,6 +77,12 @@ public class SessionService {
         s.add(session);
         return parsingSessionInSessionDTO(s).get(0);
     }
+    /**
+
+     Returns a list of sessions sorted by film name
+     @param currentPage the current page of sessions to retrieve
+     @return a list of sessions in the form of SessionDTO objects
+     */
     public List<SessionDTO> getAllSessionsSortName(int currentPage){
         int start = currentPage * 12 - 12;
         List<Session> sessions = SessionDao.getAllSessionsSortName(start, 12);
@@ -65,12 +104,27 @@ public class SessionService {
         }
         return sessionDTOS;
     }
+    /**
+
+     Returns a list of sessions sorted by count
+     @param currentPage the current page of sessions to retrieve
+     @return a list of sessions in the form of SessionDTO objects
+     */
 
     public List<SessionDTO> getAllSessionsCount(int currentPage) {
         int start = currentPage * 12 - 12;
         List<Session> sessions = SessionDao.getAllSessionsSortCount(start, 12);
         return parsingSessionInSessionDTO(sessions);
     }
+    /**
+
+     Creates a new session
+     @param timestamp the date and time of the session in the format of "yyyy-MM-dd'T'HH:mm"
+     @param price the price of the session
+     @param film the id of the film for the session
+     @return true if the session was successfully created, false otherwise
+     @throws Exception if the session overlaps with another session or if the time is outside of the allowed range
+     */
     public boolean createSession(String timestamp, String price, String film) throws Exception {
         Session session = new Session();
         String dateTime = timestamp;

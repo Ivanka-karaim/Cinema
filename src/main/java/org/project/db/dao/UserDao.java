@@ -6,14 +6,47 @@ import org.project.db.entity.User;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+/**
 
+ A class that provides methods for performing CRUD operations on the 'users' table in the database.
+ */
 public class UserDao {
+    /**
+
+     The SQL statement for adding a user to the 'users' table.
+     */
     private static final String ADD_USER = "INSERT INTO users (name, surname, date_birth, phone_number, email, password, role) values (?, ?, ?, ?, ?, ?, ?);";
+    /**
+
+     The SQL statement for deleting a user from the 'users' table.
+     */
     private static final String DELETE_USER = "DELETE FROM users WHERE id=?";
+    /**
+
+     The SQL statement for selecting a user from the 'users' table by email.
+     */
     private static final String LOGIN = "SELECT * FROM users WHERE email = ?";
+    /**
+
+     The SQL statement for selecting a user from the 'users' table by id.
+     */
     private static final String USER = "SELECT * FROM users WHERE id = ?";
+    /**
+
+     The SQL statement for selecting all users from the 'users' table.
+     */
 
     private static final String ALL_USER = "SELECT * FROM users";
+    /**
+
+     Inserts a user into the 'users' table and returns the inserted user object.
+
+     @param user the user to be inserted
+
+     @return the inserted user object
+
+     @throws SQLException if a database access error occurs
+     */
 
     public static User insertUser(User user) throws SQLException {
         Connection conn = null;
@@ -33,6 +66,18 @@ public class UserDao {
 
 
     }
+    /**
+
+     Adds a user to the 'users' table and returns the added user object.
+
+     @param user the user to be added
+
+     @param connection the connection object to the database
+
+     @return the added user object
+
+     @throws SQLException if a database access error occurs
+     */
     public static User addUser(User user, Connection connection) throws SQLException {
         try (PreparedStatement stmt = connection.prepareStatement(ADD_USER,
                 Statement.RETURN_GENERATED_KEYS)) {
@@ -58,6 +103,14 @@ public class UserDao {
         return user;
 
     }
+    /**
+
+     Deletes a user from the 'users' table by id.
+
+     @param user the user to be deleted
+
+     @return true if the user is deleted, otherwise false
+     */
     public static boolean deleteUsers(User user)  {
         Connection conn = null;
 
@@ -75,6 +128,12 @@ public class UserDao {
         }
         return true;
     }
+    /**
+
+     This method retrieves a User object by email from the database.
+     @param email the email of the User to retrieve.
+     @return a User object representing the user with the specified email, or null if the user cannot be found.
+     */
     public static User getUserByEmail(String email){
         try (Connection conn = DBManager.getInstance().getConnectionWithDriverManager();
         PreparedStatement stmt = conn.prepareStatement(LOGIN)) {
@@ -101,6 +160,11 @@ public class UserDao {
         }
 
     }
+    /**
+
+     This method retrieves a list of all users from the database.
+     @return a List of User objects representing all users in the database, or null if an error occurs.
+     */
     public static List<User> getAllUsers(){
         List<User> users = new ArrayList<>();
         try (Connection conn = DBManager.getInstance().getConnectionWithDriverManager();
@@ -129,6 +193,13 @@ public class UserDao {
         return users;
 
     }
+    /**
+
+     This method retrieves a User object by ID from the database.
+     @param id the ID of the User to retrieve.
+     @return a User object representing the user with the specified ID, or null if the user cannot be found.
+     @throws SQLException if an error occurs while retrieving the user from the database.
+     */
 
     public static User getUserById(int id) throws SQLException{
         try (Connection conn = DBManager.getInstance().getConnectionWithDriverManager();
