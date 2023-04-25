@@ -98,8 +98,8 @@ public class SessionService {
                     session.getFilm().getAuthor(),
                     session.getFilm().getCountry(),
                     session.getFilm().getYear(),
-                    session.getFilm().getPhoto(),
                     session.getFilm().getDescription(),
+                    session.getFilm().getPhoto(),
                     session.getFilm().getDuration()));
         }
         return sessionDTOS;

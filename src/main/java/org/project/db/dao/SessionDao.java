@@ -47,7 +47,12 @@ public class SessionDao {
     /**
      The SQL query for getting all sessions sorted count free places to the database.
      */
-    private static final String ALL_SESSION_SORT_COUNT= "SELECT * FROM session, tickets WHERE tickets.session_id= session.id and session.timestamp> now() GROUP BY tickets.session_id ORDER BY COUNT(tickets.user_id) ASC";
+    private static final String ALL_SESSION_SORT_COUNT= "SELECT session.id\n" +
+            "FROM session\n" +
+            "JOIN tickets ON tickets.session_id = session.id\n" +
+            "WHERE session.timestamp > NOW()\n" +
+            "GROUP BY session.id\n" +
+            "ORDER BY COUNT(tickets.user_id) ASC";
     /**
 
      This method returns a list of all sessions for a given film.
@@ -165,13 +170,10 @@ public class SessionDao {
             stmt.setInt(2,b);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){
-                Session session = new Session();
-                session.setId(rs.getInt("id"));
-                session.setTimestamp(rs.getTimestamp("timestamp"));
-                session.setPrice(rs.getDouble("price"));
-                session.setFilm(new FilmDao().getFilmById(rs.getInt("film_id")));
+                Session session;
+                int id = rs.getInt("id");
+                session = getSessionByID(id);
                 sessions.add(session);
-
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

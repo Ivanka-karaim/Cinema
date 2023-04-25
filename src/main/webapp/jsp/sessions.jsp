@@ -77,7 +77,7 @@
 
 
                     <a href="sessions?command=session&id=${session1.id}" class="a_session">
-                        <img class="photo" src="">
+                        <img class="photo" src="${session1.photo}">
                         <div class="text_session_block">
                             <div class="text_session">
                                 ${session1.name}

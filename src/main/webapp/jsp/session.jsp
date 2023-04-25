@@ -35,7 +35,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <img src="" class=" photo" style="height: 500px;">
+                <img src="${session.photo}" class=" photo" style="height: 500px;">
             </div>
             <div class="col-md-6">
                 <div class="flex-column justify-content-between align-content-between height100 width100">
